@@ -1,4 +1,4 @@
 class Store < ApplicationRecord
   has_secure_password
-  belongs_to :user, dependent: :destroy
+  has_many :users, dependent: :destroy
 end
