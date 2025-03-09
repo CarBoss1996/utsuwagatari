@@ -85,9 +85,6 @@ GEM
     bootstrap (5.3.3)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.8, < 3)
-    bootstrap-sass (3.4.1)
-      autoprefixer-rails (>= 5.2.1)
-      sassc (>= 2.0.0)
     brakeman (7.0.0)
       racc
     builder (3.3.0)
@@ -329,7 +326,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   bootstrap (~> 5.3.3)
-  bootstrap-sass (~> 3.4.1)
   brakeman
   debug
   error_highlight (~> 0.7.0)

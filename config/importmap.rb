@@ -25,8 +25,9 @@ pin "chartkick", to: "chartkick.js"
 pin "Chart.bundle", to: "Chart.bundle.js"
 
 pin "jdenticon" # @3.2.0
-pin "tinymce" # @7.1.1
+pin "tinymce" # @5.10.0
 pin "rellax" # @1.12.1
 
 pin "moment" # @2.30.1pin "chart.js" # @4.4.7
 pin "stimulus", to: "stimulus.min.js", preload: true
+pin "process" # @2.1.0

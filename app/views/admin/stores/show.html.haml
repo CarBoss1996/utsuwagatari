@@ -23,4 +23,5 @@
       %tbody
         %tr
           %td= @store.name
-          %td= @store.users.pluck(:name).join("<br/>").html_safe
+          %td= @store.users.pluck(:name).map { |name| h(name) }.join("<br/>")
+
