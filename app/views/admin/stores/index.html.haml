@@ -1,0 +1,16 @@
+.admin-container.store
+  .container.mt-5
+    .title
+      %h2.mt-5 店舗一覧
+    %a.link.back{href: root_path} 戻る
+
+    .table.table-striped
+      %thead
+        %tr
+          %th 店舗名
+      %br/
+      %tbody
+        - @stores.each do |store|
+          %a.link{href: admin_store_path(store.id)}
+            %tr
+              %td= store.name

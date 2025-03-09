@@ -1,0 +1,12 @@
+%div{:style => "position: absolute; top: 2rem; right: 1rem; z-index: 999999"}
+  - flash.each do |name, msg|
+    .toast{class: "toast-#{name.to_s}", "area-atomic" => "true", "aria-live" => "assertive", :role => "alert", data: {autohide: 'false', controller: 'toast'}}
+      .toast-header
+        - case name
+        - when /alert|error/
+          %small Error
+        - when /notice/
+          %small Success
+        %button.ms-auto.mb-1.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "toast", :type => "button"}
+      .toast-body
+        = msg.html_safe

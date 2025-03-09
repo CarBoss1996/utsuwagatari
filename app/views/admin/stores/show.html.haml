@@ -1,0 +1,26 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{:role => "tablist"}
+      %li.nav-item
+        %a.link{href: admin_stores_path} 戻る
+      %li.nav-item
+        %a.nav-link.active{href: "#"} 詳細
+      %li.nav-item
+        %a.nav-link{href: "#"} ユーザーの新規作成
+      %li.nav-item
+        %a.nav-link{href: "#"} 編集
+
+
+.admin-container
+  .container
+    .title
+      %h2.mt-5 店舗詳細
+    %table.table.table-striped.mt-2
+      %thead
+        %tr
+          %th 店舗名
+          %th 所属ユーザー
+      %tbody
+        %tr
+          %td= @store.name
+          %td= @store.users.pluck(:name).join("<br/>").html_safe

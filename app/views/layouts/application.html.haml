@@ -2,8 +2,10 @@
 %html
   %head
     %title= content_for(:title) || "Utuwagatari"
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %meta{name: "viewport", content: "width=device-width,initial-scale=1"}
     %meta{name: "apple-mobile-web-app-capable", content: "yes"}
+    %meta{:content => "ja", "http-equiv" => "content-language"}
     = csrf_meta_tags
     = csp_meta_tag
 
@@ -13,7 +15,7 @@
     %link{rel: "icon", href: "/icon.png", type: "image/png"}
     %link{rel: "icon", href: "/icon.svg", type: "image/svg+xml"}
     %link{rel: "apple-touch-icon", href: "/icon.png"}
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = stylesheet_link_tag "main", "data-turbo-track": "reload"
     = javascript_importmap_tags
 
   %body
