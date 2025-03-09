@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      store: 店舗

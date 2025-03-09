@@ -1,0 +1,174 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+  date:
+    abbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    abbr_month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 日曜日
+    - 月曜日
+    - 火曜日
+    - 水曜日
+    - 木曜日
+    - 金曜日
+    - 土曜日
+    formats:
+      default: "%Y%m%d(%a)"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d(%a)"
+    month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    order:
+    - :year
+    - :month
+    - :day
+    week:
+      firstday: 0
+      weekdays:
+        - 日
+        - 月
+        - 火
+        - 水
+        - 木
+        - 金
+        - 土
+    prompts:
+      day: 日
+      month: 月
+      year: 年
+      hour: 時
+      minute: 分
+      second: 秒
+  errors:
+    format: "%{message}"
+    messages:
+      accepted: "%{attribute}に同意して下さい"
+      blank: "%{attribute}は空にできません"
+      confirmation: "%{attribute}と%{attribute}(確認用)が一致しません"
+      empty: "%{attribute}は入力できません"
+      equal_to: "%{attribute}は%{count}に等しくなければなりません"
+      even: "%{attribute}は偶数でなければなりません"
+      exclusion: "%{attribute}は使用できません"
+      greater_than: "%{attribute}は%{count}より大きい値にしてください"
+      greater_than_or_equal_to: "%{attribute}は%{count}以上の値にしてください"
+      inclusion: "%{attribute}は一覧にありません"
+      invalid: "%{attribute}は不正な値です"
+      less_than: "%{attribute}は%{count}より小さい値にしてください"
+      less_than_or_equal_to: "%{attribute}は%{count}以下の値にしてください"
+      not_a_number: "%{attribute}は数値で入力してください"
+      not_an_integer: "%{attribute}は整数で入力してください"
+      odd: "%{attribute}は奇数にしてください"
+      present: "%{attribute}を入力してください"
+      required: "%{attribute}は必須です"
+      taken: "%{attribute}はすでに存在します"
+      too_long: "%{attribute}は%{count}文字以下で入力してください"
+      too_short: "%{attribute}は%{count}文字以上で入力してください"
+      wrong_length: "%{attribute}は%{count}文字で入力してください"
+      other_than: "%{attribute}は%{count}以外の値にしてください"
+    template:
+      body: 次の値を確認してください
+      header:
+        one: "%{model}にエラーが発生しました"
+        other: "%{model}に%{count}件のエラーが発生しました"
+  helpers:
+    select:
+      prompt: 選択してください
+      selected: "%{selected} 選択中"
+    submit:
+      create: 登録する
+      submit: 登録
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u%n%d"
+        precision: 0
+        separator: "."
+        significant: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      units:
+        byte: バイト
+        euro: EUR
+        gigabyte: GB
+        gigabytes: GB
+        kilobyte: KB
+        kilobytes: KB
+        megabyte: MB
+        megabytes: MB
+    percentage:
+      format:
+        delimiter: ''
+        precision: 0
+        significant: false
+        strip_insignificant_zeros: false
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: 、
+      two_words_connector: 、
+      words_connector: 、
+  time:
+    am: 午前
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H:%M"
+      short: "%m/%d %H:%M"
+      micro: "%H:%M"
+    pm: 午後

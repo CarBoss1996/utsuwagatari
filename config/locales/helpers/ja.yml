@@ -1,0 +1,51 @@
+ja:
+  helpers:
+    select:
+      pronpt: 選択してください
+    submit:
+      create: 登録する
+      destroy: 削除する
+      cancel: キャンセルする
+      submit: 送信する
+      update: 更新する
+      save: 保存する
+      search: 検索
+      reset: リセット
+      dowmload: ダウンロード
+      print: 印刷する
+    title:
+      list: "%{model}の一覧"
+      new: "%{model}の新規登録"
+      edit: "%{model}の編集"
+      show: "%{model}の詳細情報"
+    link:
+      new: "新しい%{model}"
+      add: "%{model}を追加"
+      back: 戻る
+      back_to_list: 一覧に戻る
+      edit: 編集
+      destroy: 削除
+      cancel: キャンセル
+      copy: 複製
+      close: 閉じる
+      show: 詳細を見る
+      detail: 基本情報
+      detail_edit: 基本情報の編集
+    flash:
+      created: "%{model}を作成しました"
+      updated: "%{model}を更新しました"
+      destroyed: "%{model}を削除しました"
+      destroy_deny: "%この{model}は削除できません"
+      canceled: "%{model}をキャンセルしました"
+      cancel_deny: "%{model}をキャンセルできませんでした"
+      copied: "%{model}を複製しました"
+    confirm:
+      destroy: データを削除します。よろしいですか？
+      cancel: データをキャンセルします。よろしいですか？
+      copy: "%{model}を複製します。よろしいですか？"
+      reset: 入力内容をリセットします。よろしいですか？
+      fix: "%{model}を確定します。よろしいですか？"
+      void: "%{model}を取り消します。よろしいですか？"
+    message:
+      empty: データがありません
+      no_preparation: データがありません
