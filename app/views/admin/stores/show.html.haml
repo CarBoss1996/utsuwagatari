@@ -2,7 +2,7 @@
   .article-header-nav
     %ul.nav.nav-pills{:role => "tablist"}
       %li.nav-item
-        %a.link{href: admin_stores_path} 戻る
+        %a.btn.btn-secondary{href: admin_stores_path} 戻る
       %li.nav-item
         %a.nav-link.active{href: "#"} 詳細
       %li.nav-item
@@ -18,10 +18,25 @@
     %table.table.table-striped.mt-2
       %thead
         %tr
-          %th 店舗名
           %th 所属ユーザー
+          %th 権限
+          %th 作成日
+      %tbody
+        - @store.users.each do |user|
+          %tr
+            %td= user.name
+            %td= user.role
+            %td= I18n.l(user.created_at, format: :medium)
+
+
+    .title
+      %h2.mt-5 うつわ一覧
+    %table.table.table-striped.mt-2
+      %thead
+        %tr
+          %th 名前
+          %th 作家名
       %tbody
         %tr
           %td= @store.name
-          %td= @store.users.pluck(:name).map { |name| h(name) }.join("<br/>")
-
+          %td

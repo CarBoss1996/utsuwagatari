@@ -1,15 +1,19 @@
+= content_for :headings do
+  %a.btn.btn-secondary{href: root_path} 戻る
+
 .admin-container.store
-  .container.mt-5
+  .container
     .title
-      %h2.mt-5 店舗一覧
-    %a.link.back{href: root_path} 戻る
+      %h2 店舗一覧
 
     %table.table.table-striped
       %thead
         %tr
           %th 店舗名
+          %th.show
       %tbody
         - @stores.each do |store|
           %tr
-            %a.link{href: admin_store_path(store.id)}
-              %td= store.name
+            %td= store.name
+            %td.show
+              %a.btn.btn-outline-secondary{href: admin_store_path(store.id)} 詳細

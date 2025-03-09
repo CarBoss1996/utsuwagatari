@@ -169,6 +169,7 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       long: "%Y年%m月%d日(%a) %H:%M"
+      medium: "%Y/%m/%d"
       short: "%m/%d %H:%M"
       micro: "%H:%M"
     pm: 午後
