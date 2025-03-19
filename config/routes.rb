@@ -7,17 +7,7 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  namespace :admin do
-    root 'home#index'
-    resources :sessions, only: [ :new, :create ]
-    resources :stores
-  end
-
-  resources :users, only: [ :new, :create ] do
-    collection do
-      get :confirm
-    end
-  end
+  draw(:admin)
 
   resources :sessions, only: [ :new, :create, :destroy ]
 end

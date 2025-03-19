@@ -1,0 +1,7 @@
+= simple_form_for [:admin,@store,@user] do |f|
+  %fieldset
+    = f.input :name
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :role,as: :radio_buttons, collection: ["user", "store_owner"]
+    = f.submit

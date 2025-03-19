@@ -33,6 +33,7 @@ ja:
       detail_edit: 基本情報の編集
     flash:
       created: "%{model}を作成しました"
+      not_created: "%{model}を作成できませんでした"
       updated: "%{model}を更新しました"
       destroyed: "%{model}を削除しました"
       destroy_deny: "%この{model}は削除できません"

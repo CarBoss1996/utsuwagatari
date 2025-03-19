@@ -4,39 +4,41 @@
       %li.nav-item
         %a.btn.btn-secondary{href: admin_stores_path} 戻る
       %li.nav-item
-        %a.nav-link.active{href: "#"} 詳細
+        %a.nav-link.active{"aria-controls" => "home", "aria-selected" => "true", "data-bs-toggle" => "tab", :href => "#list", :role => "tab"}
+          詳細
       %li.nav-item
-        %a.nav-link{href: "#"} ユーザーの新規作成
-      %li.nav-item
-        %a.nav-link{href: "#"} 編集
-
+        %a.nav-link{href: new_admin_store_user_path(@store.id)} ユーザーの新規作成
 
 .admin-container
   .container
-    .title
-      %h2.mt-5 店舗詳細
-    %table.table.table-striped.mt-2
-      %thead
-        %tr
-          %th 所属ユーザー
-          %th 権限
-          %th 作成日
-      %tbody
-        - @store.users.each do |user|
+    #list.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+      .title
+        %h2.mt-5 店舗詳細
+      %table.table.table-striped.mt-2
+        %thead
           %tr
-            %td= user.name
-            %td= user.role
-            %td= I18n.l(user.created_at, format: :medium)
+            %th 所属ユーザー
+            %th 権限
+            %th 作成日
+            %th &nbsp;
+        %tbody
+          - @store.users.each do |user|
+            %tr
+              %td= user.name
+              %td= user.role
+              %td= I18n.l(user.created_at, format: :medium)
+              %td
+                %a.btn.btn-outline-secondary{href: edit_admin_store_user_path(user: user, store_id: @store.id)} 編集
 
 
-    .title
-      %h2.mt-5 うつわ一覧
-    %table.table.table-striped.mt-2
-      %thead
-        %tr
-          %th 名前
-          %th 作家名
-      %tbody
-        %tr
-          %td= @store.name
-          %td
+      .title
+        %h2.mt-5 うつわ一覧
+      %table.table.table-striped.mt-2
+        %thead
+          %tr
+            %th 名前
+            %th 作家名
+        %tbody
+          %tr
+            %td= @store.name
+            %td
