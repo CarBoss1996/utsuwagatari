@@ -1,0 +1,6 @@
+= simple_form_for [:admin,@store], data: {turbo: false} do |f|
+  %fieldset
+    = f.input :name
+    = f.input :password
+    = f.input :password_confirmation
+    = f.submit

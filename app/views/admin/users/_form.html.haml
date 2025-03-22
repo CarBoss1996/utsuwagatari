@@ -1,4 +1,4 @@
-= simple_form_for [:admin,@store,@user] do |f|
+= simple_form_for [:admin,@store,@user], data: {turbo: false} do |f|
   %fieldset
     = f.input :name
     = f.input :password

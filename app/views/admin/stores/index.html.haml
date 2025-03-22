@@ -1,15 +1,21 @@
 = content_for :headings do
-  %a.btn.btn-secondary{href: root_path} 戻る
+  .article-header-nav
+    %ul.nav.nav-pills{:role => "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: root_path} 戻る
 
 .admin-container.store
   .container
-    .title
-      %h2 店舗一覧
+    .title.d-flex.mb-2
+      %h2.me-auto 店舗一覧
+      %a.btn.btn-outline-success{href: new_admin_store_path} 新規登録
+
 
     %table.table.table-striped
       %thead
         %tr
           %th 店舗名
+          %th.show
           %th.show
       %tbody
         - @stores.each do |store|
@@ -17,3 +23,5 @@
             %td= store.name
             %td.show
               %a.btn.btn-outline-secondary{href: admin_store_path(store.id)} 詳細
+            %td.show
+              %a.btn.btn-outline-success{href: edit_admin_store_path(store.id)} 編集

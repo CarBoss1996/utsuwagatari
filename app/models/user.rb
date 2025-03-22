@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, maximum: 20 }
 
   with_options presence: true do
+    validates :name
     validates :role
     validates :active
   end

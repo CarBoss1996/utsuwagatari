@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   draw(:admin)
+  draw(:owner)
 
   resources :sessions, only: [ :new, :create, :destroy ]
 end
