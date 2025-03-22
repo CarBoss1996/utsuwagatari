@@ -1,5 +1,6 @@
 class Admin::MainController < ApplicationController
   layout "admin/main"
+  before_action :check_auth
   helper_method :logged_in?, :current_user
 
   private
@@ -8,5 +9,20 @@ class Admin::MainController < ApplicationController
   end
   def logged_in?
     !!current_user
+  end
+
+  def check_auth
+    unless logged_in?
+      flash[:alert] = t("helpers.message.not_logged")
+      redirect_to new_admin_session_path
+      return false
+    end
+
+    if @current_user.role != "admin"
+      reset_session
+      flash[:alert] = t("helpers.message.not_admin")
+      redirect_to owner_login_path
+      return
+    end
   end
 end

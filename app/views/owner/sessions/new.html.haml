@@ -1,5 +1,8 @@
-.form.mx-auto
-  = simple_form_for(:session, url: owner_sessions_path) do |f|
-    = f.input :name
-    = f.input :password
-    = f.button :submit, class: "btn btn-submit"
+.container.owner-new
+  .card
+    .card-body
+      .form.mx-auto
+        = simple_form_for(:session, url: owner_sessions_path) do |f|
+          = f.input :name
+          = f.input :password
+          = f.button :submit, class: "btn btn-submit"

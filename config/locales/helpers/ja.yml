@@ -50,3 +50,6 @@ ja:
     message:
       empty: データがありません
       no_preparation: データがありません
+      not_logged: ログインしてください
+      not_admin: 権限がありません
+      not_owner: 権限がありません

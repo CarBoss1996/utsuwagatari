@@ -1,5 +1,6 @@
 class Owner::MainController < ApplicationController
   layout "owner/main"
+  before_action :check_auth
   helper_method :logged_in?, :current_user
 
   private
@@ -8,5 +9,20 @@ class Owner::MainController < ApplicationController
   end
   def logged_in?
     !!current_user
+  end
+
+  def check_auth
+    unless logged_in?
+      flash[:alert] = t("helpers.message.not_logged")
+      redirect_to new_owner_session_path
+      return false
+    end
+
+    if @current_user.role != "admin"
+      reset_session
+      flash[:alert] = t("helpers.message.not_owner")
+      redirect_to new_session_path
+      return
+    end
   end
 end

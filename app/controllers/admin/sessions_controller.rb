@@ -1,8 +1,8 @@
 class Admin::SessionsController < Admin::MainController
+  skip_before_action :check_auth
   def new
   end
   def create
-    Rails.logger.debug("ここに注目：#{params.inspect}")
     @user = User.find_by(name: session_params[:name])
     if @user && @user.authenticate(session_params[:password])
       if @user.role == "admin"
