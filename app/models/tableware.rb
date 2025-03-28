@@ -7,4 +7,9 @@ class Tableware < ApplicationRecord
   has_many :tableware_categories
   has_many :categories, through: :tableware_categories
   has_many :histories, dependent: :destroy
+
+  with_options presence: true do
+    validates :name
+    validates :body
+  end
 end

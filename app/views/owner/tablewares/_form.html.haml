@@ -1,0 +1,6 @@
+= simple_form_for [:owner,@tableware], data: {turbo: false} do |f|
+  %fieldset
+    = f.input :name
+    = f.input :body
+    -# = f.association :tableware_category, collection: TablewareCategory,input_html: {data: {controller: "select2", action: "change->sync-form#refresh"}}
+    = f.submit

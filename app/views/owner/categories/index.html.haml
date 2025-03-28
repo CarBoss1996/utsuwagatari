@@ -1,0 +1,28 @@
+= content_for :headings do
+  -# .article-header-nav
+  -#   %ul.nav.nav-pills{:role => "tablist"}
+  -#     %li.nav-item
+  -#       %a.btn.btn-secondary{href: owner_categories_path} 戻る
+
+.owner-container.mt-4
+  .container
+    .title.d-flex.mb-2
+      %h2.me-auto カテゴリー一覧
+      %a.btn.btn-outline-success{href: new_owner_category_path} 新規登録
+
+.owner-container
+  .container
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 名前
+          %th.show
+          %th.show
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %td= category.name
+            %td.show
+              %a.btn.btn-outline-secondary{href: owner_category_path(category.id)} 詳細
+            %td.show
+              %a.btn.btn-outline-success{href: edit_owner_category_path(category.id)} 編集

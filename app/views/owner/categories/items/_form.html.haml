@@ -1,0 +1,4 @@
+= simple_form_for [:owner,@category_item], data: {turbo: false} do |f|
+  %fieldset
+    = f.input :name
+    = f.button :submit, class: "btn mt-2"

@@ -1,0 +1,13 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{:role => "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: owner_tablewares_path} 戻る
+
+.owner-container
+  .container
+    .card
+      .card-header
+        店舗の新規作成
+      .card-body
+        = render 'form'

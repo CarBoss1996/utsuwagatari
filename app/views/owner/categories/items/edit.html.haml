@@ -2,12 +2,12 @@
   .article-header-nav
     %ul.nav.nav-pills{:role => "tablist"}
       %li.nav-item
-        %a.btn.btn-secondary{href: owner_tablewares_path} 戻る
+        %a.btn.btn-secondary{href: owner_category_path(@category)} 戻る
 
 .owner-container
   .container
     .card
       .card-header
-        店舗の編集
+        カテゴリーアイテムの編集
       .card-body
         = render 'form'

@@ -1,0 +1,27 @@
+= content_for :headings do
+  -# .article-header-nav
+  -#   %ul.nav.nav-pills{:role => "tablist"}
+  -#     %li.nav-item
+  -#       %a.btn.back{href: root_path} 戻る
+
+.owner-container.mt-4
+  .container
+    .title.d-flex.mb-2
+      %h2.me-auto うつわ一覧
+      %a.btn.btn-outline-success{href: new_owner_tableware_path} 新規登録
+
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 名前
+          %th.show
+          %th.show
+      %tbody
+        - @tablewares.each do |tableware|
+          %tr
+            %td= tableware.name
+            %td.show
+              %a.btn.btn-outline-secondary{href: owner_tableware_path(tableware.id)} 詳細
+            %td.show
+              %a.btn.btn-outline-success{href: edit_owner_tableware_path(tableware.id)} 編集
