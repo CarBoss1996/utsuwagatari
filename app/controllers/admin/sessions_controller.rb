@@ -10,7 +10,7 @@ class Admin::SessionsController < Admin::MainController
         redirect_to admin_stores_path, notice: "ログインしました"
       else
         flash[:alert] = "管理者権限がありません"
-        redirect_to new_session_path
+        redirect_to new_admin_session_path
       end
     else
       flash[:alert] = "こちらからログインしてください"

@@ -80,4 +80,6 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
   config.assets.debug = true
   config.assets.compile = true
+
+  config.hosts << /.*\.lvh\.me/
 end

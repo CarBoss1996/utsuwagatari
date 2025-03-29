@@ -1,5 +1,6 @@
 class Admin::MainController < ApplicationController
   layout "admin/main"
+  skip_before_action :set_store
   before_action :check_auth
   helper_method :logged_in?, :current_user
 
