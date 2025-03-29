@@ -49,6 +49,6 @@ class Owner::TablewaresController < Owner::MainController
       :history,
       tableware_category_ids: [],
       tableware_place_ids: [],
-    )
+    ).merge(store_id: @store.id)
   end
 end

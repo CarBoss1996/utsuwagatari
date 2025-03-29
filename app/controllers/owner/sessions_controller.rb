@@ -4,7 +4,7 @@ class Owner::SessionsController < Owner::MainController
   end
   def create
     @user = User.find_by(name: session_params[:name])
-    if @user && @user.authenticate(session_params[:password])
+    if @user && @user.authenticate(session_params[:password]) && @user.store_id == @store.id
       if @user.role == "admin" || @user.role == "store_owner"
         session[:user_id] = @user.id
         redirect_to owner_tablewares_path, notice: "ログインしました"

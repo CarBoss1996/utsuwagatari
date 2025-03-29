@@ -44,6 +44,6 @@ class Owner::CategoriesController < Owner::MainController
   def category_params
     params.require(:category).permit(
       :name,
-    )
+    ).merge(store_id: @store.id)
   end
 end

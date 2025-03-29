@@ -54,6 +54,8 @@ class Owner::Categories::ItemsController < Owner::MainController
   end
 
   def category_item_params
-    params.require(:category_item).permit(:name)
+    params.require(:category_item).permit(
+      :name
+      ).merge(category_id: (@category || @category_item&.category).id)
   end
 end

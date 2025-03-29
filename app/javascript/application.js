@@ -1,5 +1,5 @@
 import { Turbo } from "@hotwired/turbo-rails";
 import { Application } from "stimulus";
 import "bootstrap";
-import "@rails/ujs"
-
+import Rails from "@rails/ujs"
+Rails.start()

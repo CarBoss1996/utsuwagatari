@@ -25,7 +25,6 @@
             %td.show
               %a.btn.btn-outline-success{href: edit_owner_category_item_path(@category, item)} 編集
             %td.show
-              = button_to '削除', owner_category_item_path(@category, item), method: :delete, data: { confirm: '本当に削除しますか？', disable_with: '削除中...', turbo: false }, class: 'btn btn-outline-danger'
-              = form_with url: owner_categories_items_path(@category, item), method: :delete, html: {data: [turbo: false, confirm: "本当に削除しますか？"]} do
+              = form_with url: owner_category_item_path(@category, (item.id)), method: :delete, html: {data: {turbo: false, confirm: "本当に削除しますか？"}} do
                 = submit_tag '削除', class: 'btn btn-outline-danger'
 
