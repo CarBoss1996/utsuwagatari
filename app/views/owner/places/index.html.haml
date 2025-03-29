@@ -8,7 +8,7 @@
   .container
     .title.d-flex.mb-2
       %h2.me-auto 保管場所一覧
-      %a.btn.btn-outline-success{href: new_owner_category_path} 新規登録
+      %a.btn.btn-outline-success{href: new_owner_place_path} 新規登録
 
 .owner-container
   .container
@@ -17,12 +17,9 @@
         %tr
           %th 名前
           %th.show
-          %th.show
       %tbody
         - @places.each do |place|
           %tr
             %td= place.name
             %td.show
               %a.btn.btn-outline-secondary{href: owner_place_path(place.id)} 詳細
-            %td.show
-              %a.btn.btn-outline-success{href: edit_owner_place_path(place.id)} 編集
