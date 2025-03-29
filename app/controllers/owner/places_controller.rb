@@ -1,4 +1,4 @@
-class Owner::PlaceController < Owner::MainController
+class Owner::PlacesController < Owner::MainController
   def index
     @places = @store.places
   end

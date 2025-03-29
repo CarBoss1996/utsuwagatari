@@ -1,0 +1,30 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{:role => "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: owner_categories_path} 戻る
+
+.owner-container
+  .container
+    #list.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+      .title.d-flex
+        %h2.me-auto
+          = @category.name
+          %span 詳細
+        %a.btn.btn-outline-success{href: new_owner_category_item_path(@category.id)} カテゴリーアイテムの新規作成
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 名前
+          %th.show
+          %th.show
+      %tbody
+        - @category_items.each do |item|
+          %tr
+            %td= item.name
+            %td.show
+              %a.btn.btn-outline-success{href: edit_owner_category_item_path(@category, item)} 編集
+            %td.show
+              = form_with url: owner_category_item_path(@category, (item.id)), method: :delete, html: {data: {turbo: false, confirm: "本当に削除しますか？"}} do
+                = submit_tag '削除', class: 'btn btn-outline-danger'
+

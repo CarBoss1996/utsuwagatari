@@ -1,0 +1,13 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{:role => "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: owner_places_path} 戻る
+
+.owner-container
+  .container
+    .card
+      .card-header
+        の編集
+      .card-body
+        = render 'form'

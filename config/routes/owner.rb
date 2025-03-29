@@ -5,4 +5,5 @@ namespace :owner do
   resources :categories do
     resources :items, module: :categories
   end
+  resources :places
 end
