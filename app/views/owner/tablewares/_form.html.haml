@@ -1,6 +1,24 @@
-= simple_form_for [:owner,@tableware], data: {turbo: false} do |f|
+= simple_form_for [:owner, @tableware], html: { multipart: true }, data: { turbo: false } do |f|
   %fieldset
     = f.input :name
     = f.input :body
-    -# = f.association :tableware_category, collection: TablewareCategory,input_html: {data: {controller: "select2", action: "change->sync-form#refresh"}}
-    = f.submit
+    = f.input :image, as: :file, input_html: {multipart: true}
+
+    %h4 カテゴリー選択する
+    - @categories.each do |category|
+      - tableware_category = @tableware.tableware_categories.find { |tc| tc.category_id == category.id } || @tableware.tableware_categories.build(category: category)
+      = f.simple_fields_for :tableware_categories, tableware_category do |tc|
+        .row.mb-3
+          .col-md-3
+            %strong= category.name
+            = tc.hidden_field :category_id
+          .col-md-6
+            = tc.input :category_item_id, collection: category.category_items, label: false
+
+    = f.input :place_ids, collection: Place.active, input_html: {data: {controller: "select2"}, multople: true}
+    - @tableware.histories.build if @tableware.histories.empty?
+    = f.simple_fields_for :histories do |h|
+      = h.input :entrance_on, input_html: { type: :date }
+      = h.input :exit_on, input_html: { type: :date }
+
+    = f.submit "登録する", class: "btn btn-primary mt-3"

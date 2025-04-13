@@ -45,6 +45,7 @@ module Utuwagatari
 
     config.generators do |g|
       g.helper false
+      g.jbuilder false
     end
   end
 end

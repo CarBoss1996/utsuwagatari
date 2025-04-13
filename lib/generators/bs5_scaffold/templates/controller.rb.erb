@@ -1,0 +1,59 @@
+class <%= controller_class_name %> < <%= parent_controller_class_name %>
+  before_action :set_<%= model_name.singular%>, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @<%= model_name.plural %> = @store.<%= model_name.plural %>
+  end
+
+  def show
+  end
+
+  def new
+    @<%= model_name.singular %> = @store.<%= model_name.plural %>.new
+  end
+
+  def create
+    @<%= model_name.singular %> = @store.<%= model_name.plural %>.new(<%= params_name %>)
+    if @<%= model_name.singular %>.save
+      flash[:notice] = t("helpers.flash.created")
+      redirect_to <%= plural_paths.join("_") %>_path(@<%= model_name.singular%>)
+    else
+      flash[:alert] = t("helpers.flash.not_created")
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @<%= model_name.singular%>.update(<%= params_name %>)
+      flash[:notice] = t("helpers.flash.updated")
+      redirect_to <%= plural_paths.join("_") %>_path(@<%= model_name.singular%>)
+    else
+      flash[:alert] = t("helpers.flash.not_updated")
+      render :edit
+    end
+  end
+
+  def destroy
+    if @<%= model_name.singular%>.destroy
+      flash[:notice] = t("helpers.flash.destroyed")
+    else
+      flash[:alert] = t("helpers.flash.not_destroyed")
+    end
+    redirect_to <%= plural_paths.join("_") %>_path
+  end
+
+  private
+  def set_<%= model_name.singular%>
+    @place = @store.<%= model_name.plural%>.find_by(id: params[:id])
+  end
+
+  def <%= params_name %>
+    params.require(:<%= model_name.singular%>).permit(
+      :name,
+      :body,
+    ).merge(store_id: @store.id)
+  end
+end

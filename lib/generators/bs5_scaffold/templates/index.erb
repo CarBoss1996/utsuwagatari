@@ -1,0 +1,25 @@
+= content_for :headings do
+  -# .article-header-nav
+  -#   %ul.nav.nav-pills{:role => "tablist"}
+  -#     %li.nav-item
+  -#       %a.btn.btn-secondary{href: <%= singular_paths.join("_") %>_path} 戻る
+
+.owner-container.mt-4
+  .container
+    .title.d-flex.mb-2
+      %h2.me-auto <%= model_name.name.classify %>一覧
+      %a.btn.btn-outline-success{href: new_<%= singular_paths.join("_") %>_path} 新規登録
+
+.owner-container
+  .container
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 名前
+          %th.show
+      %tbody
+        - <%= model_name.plural %>.each do |<%= model_name.singular %>|
+          %tr
+            %td
+            %td.show
+              %a.btn.btn-outline-secondary{href: <%= singular_paths.join("_") %>_path(<%= model_name.singular %>)} 詳細

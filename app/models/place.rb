@@ -4,4 +4,6 @@ class Place < ApplicationRecord
   has_many :tableware, through: :tableware_places, dependent: :nullify
 
   validates :name, presence: true
+
+  scope :active, -> { where(active: true) }
 end

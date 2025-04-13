@@ -1,0 +1,30 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{:role => "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: <%= plural_paths.join("_") %>_path} 戻る
+
+.owner-container
+  .container
+    #list.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+      .title.d-flex
+        %h2.me-auto
+          = @<%= model_name.singular %>
+          %span 詳細
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 名前
+          %th 説明
+          %th.show
+          %th.show
+      %tbody
+        %tr
+          %td= @<%= model_name.singular %>.name
+          %td= @<%= model_name.singular %>.body
+          %td.show
+            %a.btn.btn-outline-success{href: edit_<%= singular_paths.join("_") %>_path(@<%= model_name.singular %>)} 編集
+          %td.show
+            = form_with url: <%= singular_paths.join("_") %>_path(@<%= model_name.singular %>), method: :delete, html: {data: {turbo: false, confirm: "本当に削除しますか？"}} do
+              = submit_tag '削除', class: 'btn btn-outline-danger'
+
