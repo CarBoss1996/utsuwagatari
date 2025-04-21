@@ -36,7 +36,7 @@ gem "bootsnap", require: false
 gem "bcrypt", "~> 3.1.7"
 gem "haml-rails"
 gem "simple_form"
-gem "bootstrap", "~> 5.3.3"
+gem "bootstrap", "~> 5.3.5"
 gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
