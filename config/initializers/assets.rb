@@ -16,3 +16,6 @@ Rails.application.config.assets.precompile += %w[ admin/main.css ]
 
 Rails.application.config.assets.precompile += %w[ owner/main.js ]
 Rails.application.config.assets.precompile += %w[ owner/main.css ]
+
+Rails.application.config.assets.precompile += %w[ front/main.js ]
+Rails.application.config.assets.precompile += %w[ front/main.css ]

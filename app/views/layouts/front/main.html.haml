@@ -1,0 +1,26 @@
+%html
+  %head
+    %title うつわがたり | utsuwagatari
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no", :name =>"viewport"}/
+    %meta{:content => "ja", :name => "language"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c", :rel => "stylesheet"}/
+    %link{rel: "icon", type: "image/x-icon", href: "/favicon.ico"}
+    = csrf_meta_tags
+    = stylesheet_link_tag "front/main", "data-turbo-track": "reload"
+    = stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", media: "all"
+    = javascript_importmap_tags
+  %body
+    %header
+      = render 'layouts/front/header'
+    %main
+      %article
+        = turbo_frame_tag :flash_messages do
+          = render 'layouts/messages'
+        - if logged_in? && content_for?(:headings)
+          #article-heading
+            = yield :headings
+        = yield
+    %footer
+      = render 'layouts/front/footer'
+    = turbo_frame_tag 'modal'
