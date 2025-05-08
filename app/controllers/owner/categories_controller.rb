@@ -1,7 +1,7 @@
 class Owner::CategoriesController < Owner::MainController
   before_action :set_category, except: [ :index ]
   def index
-    @categories = @store.category.all
+    @categories = @store.categories.all
   end
 
   def show
@@ -9,11 +9,11 @@ class Owner::CategoriesController < Owner::MainController
   end
 
   def new
-    @category = @store.category.new
+    @category = @store.categories.new
   end
 
   def create
-    @category = @store.category.new(category_params)
+    @category = @store.categories.new(category_params)
     if @category.save
       flash[:notice] = t("helpers.flash.created")
       redirect_to owner_categories_path
@@ -38,7 +38,7 @@ class Owner::CategoriesController < Owner::MainController
 
   private
   def set_category
-    @category = @store.category.find_by(id: params[:id])
+    @category = @store.categories.find_by(id: params[:id])
   end
 
   def category_params

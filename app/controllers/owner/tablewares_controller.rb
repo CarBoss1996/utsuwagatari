@@ -38,20 +38,56 @@ class Owner::TablewaresController < Owner::MainController
     end
   end
 
+  def destroy
+    if @tableware.destroy
+      flash[:notice] = t("helpers.flash.destroyed", model: Tableware.model_name.human)
+      redirect_to owner_tablewares_path
+    else
+      flash[:alert] = t("helpers.flash.destroy_deny", model: Tableware.model_name.human)
+      render :show
+    end
+  end
+
+  def image_upload
+    if params[:images].present?
+      params[:images].each do |img|
+        @tableware.images.attach(img)
+      end
+      flash[:notice] = t("helpers.flash.created", model: Tableware.model_name.human)
+    else
+      flash[:notice] = t("helpers.flash.not_created", model: Tableware.model_name.human)
+    end
+    redirect_to owner_tableware_path(@tableware)
+  end
+
+  def image_destroy
+    @image = @tableware.images.find(params[:image_id])
+    if @image.purge
+      flash[:notice] = t("helpers.flash.destroyed", model: "画像")
+    else
+      flash[:alert] = t("helpers.flash.destroy_deny", model: "画像")
+    end
+    redirect_to owner_tableware_path(@tableware)
+  end
+
   private
 
   def set_tableware
-    @tableware = @store.tablewares.find_by(id: params[:id])
+    @tableware = @store.tablewares.find_by(id: params[:id] || params[:tableware_id])
   end
 
   def tableware_params
-    params.require(:tableware).permit(
+    permitted = params.require(:tableware).permit(
       :name,
       :body,
-      :images,
       :history,
+      images: [],
+      place_ids: [],
+      histories_attributes: [ :id, :entrance_on, :exit_on ],
       tableware_categories_attributes: [ :id, :category_id, :category_item_id, :_destroy ],
-    ).merge(store_id: @store.id)
+    )
+    permitted.delete(:images) if permitted[:images]&.all?(&:blank?)
+    permitted.merge(store_id: @store.id)
   end
 
   def set_category_items

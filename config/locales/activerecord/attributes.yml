@@ -7,3 +7,20 @@ ja:
         submit: ログイン
         password_confirmation: パスワード確認
         role: 権限
+      tableware:
+        name: 名前
+        body: 詳細
+        categories_info: カテゴリー
+        places_info: 場所
+        place_ids: 場所
+        histories_info: 履歴
+      history:
+        entrance_on: 使用開始日
+        exit_on: 使用終了日
+      place:
+        name: 名前
+        body: 詳細
+      category:
+        name: 名前
+      category_item:
+        name: 名前

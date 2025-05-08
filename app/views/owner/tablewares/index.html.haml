@@ -16,12 +16,9 @@
         %tr
           %th 名前
           %th.show
-          %th.show
       %tbody
         - @tablewares.each do |tableware|
           %tr
             %td= tableware.name
             %td.show
               %a.btn.btn-outline-secondary{href: owner_tableware_path(tableware.id)} 詳細
-            %td.show
-              %a.btn.btn-outline-success{href: edit_owner_tableware_path(tableware.id)} 編集

@@ -2,8 +2,6 @@
 
 pin "application", preload: true
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
-pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
-pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "popper", to: "popper.js", preload: true
@@ -29,5 +27,9 @@ pin "tinymce" # @5.10.0
 pin "rellax" # @1.12.1
 
 pin "moment" # @2.30.1pin "chart.js" # @4.4.7
-pin "stimulus", to: "stimulus.min.js", preload: true
+# pin "stimulus", to: "stimulus.min.js", preload: true
 pin "process" # @2.1.0
+pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
+pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
+pin "@hotwired/stimulus-importmap-autoloader", to: "stimulus-importmap-autoloader.js"
+pin_all_from "app/javascript/controllers", under: "controllers"

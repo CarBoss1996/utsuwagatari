@@ -2,31 +2,50 @@
   .article-header-nav
     %ul.nav.nav-pills{:role => "tablist"}
       %li.nav-item
-        %a.btn.btn-secondary{href: owner_places_path} 戻る
+        %a.btn.btn-secondary{href: owner_tablewares_path} 戻る
+      %li.nav-item
+        %a.nav-link.active{"aria-controls" => "home", "aria-selected" => "true", "data-be-toggle" => "tab", :href => "#details", :role => "tab"}
+          詳細
+      %li.nav-item
+        %a.btn.btn-outline-success{href: edit_owner_tableware_path(@tableware)} 編集
+      %li.nav-item
+        = form_with url: owner_tableware_path(@tableware), method: :delete, html: {data: {turbo: false, confirm: "本当に削除しますか？"}} do
+          = submit_tag '削除', class: 'btn btn-outline-danger'
 
 .owner-container
   .container
     #list.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
-      .title.d-flex
-        %h2.me-auto
-          = @tableware.name
-          %span 詳細
-    %table.table.table-striped
-      %thead
-        %tr
-          %th 名前
-          %th 説明
-          %th.show
-          %th.show
-      %tbody
-        %tr
-          %td
-            = @tableware.name
-          %td
-            = @tableware.body
-          %td.show
-          -#   %a.btn.btn-outline-success{href: edit_owner_place_path(@place)} 編集
-          -# %td.show
-          -#   = form_with url: owner_place_path(@place), method: :delete, html: {data: {turbo: false, confirm: "本当に削除しますか？"}} do
-          -#     = submit_tag '削除', class: 'btn btn-outline-danger'
+      .list-group
+        = card_item @tableware,:name
+        = card_item @tableware,:body
+        = card_item @tableware, :categories_info
+        = card_item @tableware, :places_info
+        = card_item @tableware, :histories_info
+        %h4.mt-4 画像一覧
+        .d-flex
+          - @tableware.images.each do |image|
+            .d-flex.flex-column
+              = image_tag url_for(image), class: "img-thumbnail me-2"
+              = link_to owner_tableware_image_destroy_path(tableware_id: @tableware.id, image_id: image.id), method: :delete, data: { confirm: "この画像を削除しますか？" } do
+                %i.bi.bi-trash
 
+          -# = form_with url: image_upload_owner_tableware_path(@tableware),
+          -#   multipart: true,
+          -#   local: true do
+          -#   = file_field_tag :images, multiple: true, name: "images[]"
+          -#   = submit_tag "送信"
+          = form_with url: image_upload_owner_tableware_path(@tableware), multipart: true, local: true, data: { controller: "auto-submit" } do
+            %label.btn.btn-outline-primary{ for: "image-upload" }
+              ＋画像を追加
+            = file_field_tag :images,
+                multiple: true,
+                id: "image-upload",
+                name: "images[]",
+                data: { action: "change->auto-submit#submit", auto_submit_target: "input" },
+                style: "display: none;"
+
+
+          -# = form_with url: image_upload_owner_tableware_path(@tableware), multipart: true, local: true, html: { data: { controller: "auto-submit" } } do
+          -#   %label.btn.btn-outline-primary{ for: "image-upload" }
+          -#     ＋画像を追加
+          -#   = file_field_tag :images, multiple: true, id: "image-upload", name: "images[]", style: "display: none;", data: { action: "change->auto-submit#submit" }
