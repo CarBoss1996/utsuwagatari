@@ -1,0 +1,6 @@
+ja:
+  simple_form:
+    labels:
+      session:
+        name: 名前
+        password: パスワード

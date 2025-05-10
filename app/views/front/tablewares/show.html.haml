@@ -1,0 +1,27 @@
+.container.show
+  %a.back-link{href: tablewares_path}
+    %bi.bi-arrow-90deg-left
+    %span もどる
+
+  .body.mt-3
+    .image-content{ data: { controller: "image-gallery" } }
+      .main-image
+        - if @tableware.images.present?
+          = image_tag @tableware.images.first, id: "main-image", data: { image_gallery_target: "main" }
+        - else
+          = image_tag "no-image.png", class: "image"
+
+      - if @tableware.images.present?
+        .thumb-swiper.swiper
+          .swiper-wrapper
+            - @tableware.images.each do |image|
+              .swiper-slide
+                = image_tag image, data: { action: "click->image-gallery#swap", image_gallery_url_value: url_for(image) }
+
+    .show-list
+      %h4.name= card_value @tableware, :name
+      - if @tableware.body.present?
+        %p= card_value @tableware,:body
+      = card_item @tableware, :categories_info
+      = card_item @tableware, :places_info
+      = card_item @tableware, :histories_info

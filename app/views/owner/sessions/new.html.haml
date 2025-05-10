@@ -2,7 +2,7 @@
   .card
     .card-body
       .form.mx-auto
-        = simple_form_for(:session, url: owner_sessions_path) do |f|
+        = simple_form_for(:session, url: owner_sessions_path, html: {data: {turbo: false}}) do |f|
           = f.input :name
           = f.input :password
           = f.button :submit, class: "btn btn-submit"

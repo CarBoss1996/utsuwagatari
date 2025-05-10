@@ -1,0 +1,8 @@
+.container.front-new
+  .card
+    .card-body
+      .form.mx-auto
+        = simple_form_for :session, url: sessions_path, wrapper: :horizontal_form, data: {turbo: false} do |f|
+          = f.input :name, required: true
+          = f.input :password
+          = f.button :submit, class: "btn btn-submit"

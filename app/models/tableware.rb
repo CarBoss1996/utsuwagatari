@@ -13,7 +13,6 @@ class Tableware < ApplicationRecord
 
   with_options presence: true do
     validates :name
-    validates :body
   end
   accepts_nested_attributes_for :histories
   accepts_nested_attributes_for :tableware_categories, allow_destroy: true, reject_if: ->(attributes) { attributes["category_item_id"].blank? }
@@ -25,10 +24,12 @@ class Tableware < ApplicationRecord
   end
 
   def places_info
-    places.map(&:name).join("、")
+    self.places.map(&:name).join("、")
   end
 
   def histories_info
-    histories.map { |h| "#{h.entrance_on}〜#{h.exit_on}" }.join("<br>").html_safe
+    self.histories.map do |history|
+      "#{history.entrance_on}〜#{history.exit_on}"
+    end.join("<br>").html_safe
   end
 end

@@ -1,6 +1,6 @@
 = simple_form_for [:owner, @tableware], html: { multipart: true }, data: { turbo: false } do |f|
   %fieldset
-    = f.input :name
+    = f.input :name,required: true
     = f.input :body
     %h4 カテゴリー選択する
     - @categories.each do |category|
@@ -16,8 +16,9 @@
     = f.input :place_ids, collection: Place.active, input_html: {data: {controller: "select2"}, multiple: true}
     - @tableware.histories.build if @tableware.histories.empty?
     = f.simple_fields_for :histories do |h|
-      = h.input :entrance_on, input_html: { type: :date }
-      = h.input :exit_on, input_html: { type: :date }
+      .row
+        = h.input :entrance_on, as: :string, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
+        = h.input :exit_on, as: :string, require: false, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
 
     -# - if @tableware.images.attached?
     -#   .my-3
@@ -27,4 +28,4 @@
 
     -# = f.input :images, as: :file, input_html: {multiple: true, name: "tableware[images][]"}
 
-    -# = f.submit "登録する", class: "btn btn-primary mt-3"
+    = f.submit "登録する", class: "btn btn-primary mt-3"

@@ -1,0 +1,18 @@
+.container.index
+  %h3.text-center うつわを探す
+  .search-content
+    .box 検索
+  -# .content
+  -#   %h3 閲覧履歴
+  .content
+    %h3 うつわ一覧
+    .tableware-list
+      - @tablewares.each do |tw|
+        %a.tableware-item{href: tableware_path(tw.id)}
+          .image-content
+            - if tw.images.present?
+              .image= image_tag tw.images.first
+            - else
+              = image_tag "no-image.png", class: "image"
+          .name= tw.name
+          .category= card_value tw, :categories_info

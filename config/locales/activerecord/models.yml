@@ -3,3 +3,8 @@ ja:
     models:
       user: ユーザー
       store: 店舗
+      tableware: うつわ
+      category: カテゴリー
+      history: 履歴
+      place: 保管場所
+      category_item: カテゴリーアイテム

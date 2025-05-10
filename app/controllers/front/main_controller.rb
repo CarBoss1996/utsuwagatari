@@ -14,7 +14,7 @@ class Front::MainController < ApplicationController
   end
 
   def current_user
-    @current_user ||=User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(id: session[:front_user_id]) if session[:front_user_id]
   end
 
   def logged_in?
@@ -24,15 +24,15 @@ class Front::MainController < ApplicationController
   def check_auth
     unless logged_in?
       flash[:alert] = t("helpers.message.not_logged")
-      redirect_to new_owner_session_path
+      redirect_to new_session_path
       return false
     end
 
-    if @current_user.role != "admin"
+    unless [ "user", "owner", "admin" ].include?(@current_user.role)
       reset_session
       flash[:alert] = t("helpers.message.not_owner")
       redirect_to new_session_path
-      return
+      nil
     end
   end
 end

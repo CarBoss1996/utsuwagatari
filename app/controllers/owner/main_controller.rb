@@ -28,11 +28,11 @@ class Owner::MainController < ApplicationController
       return false
     end
 
-    if @current_user.role != "admin"
+    unless [ "admin", "store_owner" ].include?(@current_user.role)
       reset_session
       flash[:alert] = t("helpers.message.not_owner")
       redirect_to new_session_path
-      return
+      nil
     end
   end
 end
