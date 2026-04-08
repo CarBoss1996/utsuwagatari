@@ -28,7 +28,7 @@ class Front::MainController < ApplicationController
       return false
     end
 
-    unless [ "user", "owner", "admin" ].include?(@current_user.role)
+    unless [ "user", "store_owner", "admin" ].include?(@current_user.role)
       reset_session
       flash[:alert] = t("helpers.message.not_owner")
       redirect_to new_session_path

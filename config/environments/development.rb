@@ -82,4 +82,5 @@ Rails.application.configure do
   config.assets.compile = true
 
   config.hosts << /.*\.lvh\.me/
+  config.action_dispatch.tld_length = 0
 end

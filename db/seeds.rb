@@ -7,3 +7,5 @@ store_source.each do |values|
   store.name = values.shift
   store.active = true
 end
+
+load Rails.root.join("db/seeds/tablewares.rb")

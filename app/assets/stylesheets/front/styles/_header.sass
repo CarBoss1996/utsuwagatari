@@ -8,4 +8,47 @@
   z-index: 1000
   h2
     margin-bottom: 0
-    
+  .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    button
+      text-decoration: unset
+      color: unset
+    .search
+      // border: 1px solid #333
+      // border-radius: 5px
+      // padding: 1px 10px
+
+  .search-overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0,0,0,0.6)
+    z-index: 1000
+    display: flex
+    justify-content: center
+    align-items: center
+
+  .search-box
+    background: white
+    padding: 2rem
+    border-radius: 0.5rem
+    overflow-y: auto
+    position: relative
+    min-width: 300px
+    legend
+      border-bottom: solid 1px #333
+      font-size: 20px
+
+.btn-close
+  position: absolute
+  top: 10px
+  right: 10px
+  background: transparent
+  border: none
+  font-size: 20px
+  color: #000
+  cursor: pointer

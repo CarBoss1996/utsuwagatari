@@ -1,5 +1,6 @@
 class Front::TablewaresController < Front::MainController
-  before_action :set_tableware, except: [ :index]
+  before_action :set_tableware, except: [ :index, :search ]
+
   def index
     @tablewares = @store.tablewares
   end
@@ -8,6 +9,9 @@ class Front::TablewaresController < Front::MainController
   end
 
   def search
+    filter = TablewaresFilter.new(@store.tablewares, params)
+    @tablewares = filter.call
+    render :index
   end
 
   private

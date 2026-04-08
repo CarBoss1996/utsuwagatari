@@ -1,4 +1,27 @@
-.header
+.header{ data: { controller: "search-overlay" } }
   .container
     .title
       %h2 うつわがたり
+
+    = button_tag type: "button", class: "search-button", data: { action: "search-overlay#open" } do
+      .search
+        %i.bi.bi-search
+        %span 検索
+
+    #search-overlay.search-overlay.d-none{ data: { search_overlay_target: "panel"}}
+      .search-box{data: {action: "click->search-overlay#stop"}}
+        = button_tag "×", type: "button", class: "btn-close", data: { action: "search-overlay#close" }
+
+        = form_with url: search_tablewares_path, method: :get, local: true do |f|
+          .mb-3
+            = f.label :name, "名前", class: "form-label"
+            = f.text_field :name, value: params[:name], class: "form-control", placeholder: "器の名前で検索"
+          - @store.categories.includes(:category_items).each do |category|
+            %fieldset.mb-3
+              %legend= category.name
+              - category.category_items.each do |item|
+                .form-check
+                  = check_box_tag "category_item_ids[]", item.id, Array(params[:category_item_ids]).include?(item.id.to_s), id: "category_item_#{item.id}", class: "form-check-input"
+                  = label_tag "category_item_#{item.id}", item.name, class: "form-check-label"
+          = f.submit "検索", class: "btn btn-primary"
+
