@@ -12,6 +12,7 @@
 // tableware/index
 .index
   padding: 20px
+  padding-top: 50px
   .content
     .tableware-list
       display: grid
@@ -21,7 +22,7 @@
         grid-template-columns: repeat(2, 1fr)
       +media-breakpoint-down(md)
         grid-template-columns: repeat(1, 1fr)
-    .tableware-item
+    .tableware-item, .place-item
       background-color: $gray
       padding: 20px
       text-decoration: unset

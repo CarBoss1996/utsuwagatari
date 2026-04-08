@@ -1,17 +1,41 @@
 .container.index
-  %h3.text-center うつわを探す
-  .content
-    %h3 うつわ一覧
-    .tableware-list
-      - if @tablewares.empty?
-        %p.text-center うつわが見つかりませんでした。
-      - else
-        - @tablewares.each do |tw|
-          %a.tableware-item{href: tableware_path(tw.id)}
-            .image-content
-              - if tw.images.present?
-                .image= image_tag tw.images.first
-              - else
-                = image_tag "no-image.png", class: "image"
-            .name= tw.name
-            .category= card_value tw, :categories_info
+  %ul.nav.nav-tabs
+    %li.nav-item
+      %a.nav-link.active{href: "#tablewares", data: {bs_toggle: "tab"}} うつわ一覧
+    %li.nav-item
+      %a.nav-link{href: "#history", data: {bs_toggle: "tab"}} 閲覧履歴
+
+  .tab-content.mt-3
+    #tablewares.tab-pane.fade.show.active
+      .content
+        - if @tablewares.empty?
+          %p.text-center うつわが見つかりませんでした。
+        - else
+          .d-flex.justify-content-end
+            != pagy_bootstrap_nav(@pagy)
+          .tableware-list
+            - @tablewares.each do |tw|
+              %a.tableware-item{href: tableware_path(tw.id)}
+                .image-content
+                  - if tw.images.present?
+                    .image= image_tag tw.images.first
+                  - else
+                    = image_tag "no-image.png", class: "image"
+                .name= tw.name
+                .category= card_value tw, :categories_info
+
+    #history.tab-pane.fade
+      .content
+        - if @recently_viewed.present?
+          .tableware-list
+            - @recently_viewed.each do |tw|
+              %a.tableware-item{href: tableware_path(tw.id)}
+                .image-content
+                  - if tw.images.present?
+                    .image= image_tag tw.images.first
+                  - else
+                    = image_tag "no-image.png", class: "image"
+                .name= tw.name
+                .category= card_value tw, :categories_info
+        - else
+          %p.text-center まだ閲覧した器はありません。

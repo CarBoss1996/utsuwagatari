@@ -15,10 +15,24 @@
     button
       text-decoration: unset
       color: unset
-    .search
-      // border: 1px solid #333
-      // border-radius: 5px
-      // padding: 1px 10px
+    .header-nav
+      display: flex
+      align-items: center
+      gap: 1.5rem
+    .header-nav-item
+      display: flex
+      flex-direction: column
+      align-items: center
+      text-decoration: none
+      color: black
+      font-size: 11px
+      background: none
+      border: none
+      padding: 0
+      cursor: pointer
+      svg
+        width: 24px
+        height: 24px
 
   .search-overlay
     position: fixed
@@ -42,6 +56,14 @@
     legend
       border-bottom: solid 1px #333
       font-size: 20px
+    .select2-container
+      width: 100% !important
+    .select2-selection--multiple
+      .select2-selection__rendered
+        display: flex
+        flex-wrap: wrap
+        gap: 4px
+        padding: 4px
 
 .btn-close
   position: absolute

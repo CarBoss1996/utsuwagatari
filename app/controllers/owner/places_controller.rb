@@ -54,6 +54,7 @@ class Owner::PlacesController < Owner::MainController
     params.require(:place).permit(
       :name,
       :body,
+      :image,
     ).merge(store_id: @store.id)
   end
 end

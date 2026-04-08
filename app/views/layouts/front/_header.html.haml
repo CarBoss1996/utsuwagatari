@@ -2,10 +2,15 @@
   .container
     .title
       %h2 うつわがたり
-
-    = button_tag type: "button", class: "search-button", data: { action: "search-overlay#open" } do
-      .search
-        %i.bi.bi-search
+    .header-nav
+      = link_to tablewares_path, class: "header-nav-item" do
+        = render "layouts/front/icon_bowl"
+        %span うつわ
+      = link_to places_path, class: "header-nav-item" do
+        = render "layouts/front/icon_place"
+        %span 場所
+      = button_tag type: "button", class: "header-nav-item search-button", data: { action: "search-overlay#open" } do
+        = render "layouts/front/icon_search"
         %span 検索
 
     #search-overlay.search-overlay.d-none{ data: { search_overlay_target: "panel"}}
@@ -18,10 +23,10 @@
             = f.text_field :name, value: params[:name], class: "form-control", placeholder: "器の名前で検索"
           - @store.categories.includes(:category_items).each do |category|
             %fieldset.mb-3
-              %legend= category.name
-              - category.category_items.each do |item|
-                .form-check
-                  = check_box_tag "category_item_ids[]", item.id, Array(params[:category_item_ids]).include?(item.id.to_s), id: "category_item_#{item.id}", class: "form-check-input"
-                  = label_tag "category_item_#{item.id}", item.name, class: "form-check-label"
+              = category.name
+              = select_tag "category_item_ids[]", options_from_collection_for_select(category.category_items, :id, :name, Array(params[:category_item_ids]).map(&:to_i)), multiple: true, id: "category_#{category.id}_items", class: "form-control", data: { controller: "select2" }
+          %fieldset.mb-3
+            = Place.model_name.human
+            = select_tag "place_ids[]", options_from_collection_for_select(@store.places.active, :id, :name, Array(params[:place_ids]).map(&:to_i)), multiple: true, class: "form-control", data: { controller: "select2" }
           = f.submit "検索", class: "btn btn-primary"
 

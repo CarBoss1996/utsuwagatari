@@ -1,2 +1,9 @@
 .top-wrapper
-  %a.btn.submit-btn{href: new_session_path} ログイン
+  - if logged_in?
+    .menu-list
+      = link_to tablewares_path, class: "menu-item" do
+        %span うつわ一覧
+      = link_to places_path, class: "menu-item" do
+        %span 保管場所一覧
+  - else
+    %a.btn.submit-btn{href: new_session_path} ログイン

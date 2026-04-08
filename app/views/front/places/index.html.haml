@@ -1,0 +1,12 @@
+.container.index
+  .content
+    %h3.text-center 保管場所一覧
+    .place-list
+      - @places.each do |place|
+        = link_to place_path(place), class: "place-item" do
+          .image-content
+            - if place.image.attached?
+              .image= image_tag place.image
+            - else
+              = image_tag "no-image.png", class: "image"
+          .name= place.name

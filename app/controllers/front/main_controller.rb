@@ -1,4 +1,6 @@
 class Front::MainController < ApplicationController
+  include Pagy::Backend
+
   layout "front/main"
   before_action :set_store
   before_action :store_active?

@@ -17,6 +17,11 @@ class TablewaresFilter
       filtered = filtered.where_exists(:tableware_categories, category_item_id: id)
     end
 
+    place_ids = Array(params[:place_ids]).reject(&:blank?).map(&:to_i)
+    if place_ids.any?
+      filtered = filtered.where_exists(:tableware_places, place_id: place_ids)
+    end
+
     filtered
   end
 end

@@ -6,4 +6,5 @@ scope module: :front do
       get :search
     end
   end
+  resources :places, only: [ :index, :show ]
 end
