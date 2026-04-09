@@ -1,2 +1,9 @@
 .footer
+  .footer-nav
+    = link_to "利用規約", terms_path
+    = link_to "お問い合わせ", inquiry_path
+    - if logged_in?
+      = button_to "ログアウト", session_path(current_user), method: :delete, class: "logout-btn"
+    - else
+      = link_to "ログイン", new_session_path
   %p 2025 ©︎utsuwagatari

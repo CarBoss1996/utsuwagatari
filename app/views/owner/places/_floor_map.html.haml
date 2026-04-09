@@ -1,0 +1,8 @@
+%div#floor-map-content
+  - if @store.floor_map.attached?
+    = image_tag @store.floor_map, style: "max-width: 100%", class: "mb-3"
+  - else
+    %p まだ配置図が登録されていません。
+  = simple_form_for @store, url: update_floor_map_owner_places_path, method: :patch do |f|
+    = f.input :floor_map, as: :file, label: "配置図画像を変更する"
+    = f.button :submit, "保存する", class: "btn btn-primary mt-2"

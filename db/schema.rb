@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_13_033435) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_09_141402) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -62,6 +62,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_13_033435) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tableware_id"], name: "index_histories_on_tableware_id"
+  end
+
+  create_table "inquiries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "body"
+    t.bigint "store_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_inquiries_on_store_id"
   end
 
   create_table "places", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -129,6 +139,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_13_033435) do
   add_foreign_key "categories", "stores"
   add_foreign_key "category_items", "categories"
   add_foreign_key "histories", "tablewares"
+  add_foreign_key "inquiries", "stores"
   add_foreign_key "places", "stores"
   add_foreign_key "tableware_categories", "categories"
   add_foreign_key "tableware_categories", "category_items"

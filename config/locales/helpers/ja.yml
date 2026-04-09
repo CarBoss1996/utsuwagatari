@@ -32,14 +32,16 @@ ja:
       detail: 基本情報
       detail_edit: 基本情報の編集
     flash:
-      created: "%{model}を作成しました"
-      not_created: "%{model}を作成できませんでした"
-      updated: "%{model}を更新しました"
-      destroyed: "%{model}を削除しました"
-      destroy_deny: "%この{model}は削除できません"
-      canceled: "%{model}をキャンセルしました"
-      cancel_deny: "%{model}をキャンセルできませんでした"
-      copied: "%{model}を複製しました"
+      created: "登録しました"
+      not_created: "登録できませんでした"
+      updated: "更新しました"
+      not_updated: "更新できませんでした"
+      destroyed: "削除しました"
+      not_destroyed: "削除できませんでした"
+      destroy_deny: "削除できません"
+      canceled: "キャンセルしました"
+      cancel_deny: "キャンセルできませんでした"
+      copied: "複製しました"
     confirm:
       destroy: データを削除します。よろしいですか？
       cancel: データをキャンセルします。よろしいですか？

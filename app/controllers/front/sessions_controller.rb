@@ -7,7 +7,7 @@ class Front::SessionsController < Front::MainController
     @user = User.find_by(name: session_params[:name])
     if @user && @user.authenticate(session_params[:password]) && @user.store_id == @store.id
       session[:front_user_id] = @user.id
-      redirect_to root_path, notice: "ログインしました"
+      redirect_to tablewares_path, notice: "ログインしました"
     else
       flash.now[:alert] =  "ログインに失敗しました"
       render :new

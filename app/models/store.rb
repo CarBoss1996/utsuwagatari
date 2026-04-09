@@ -1,5 +1,7 @@
 class Store < ApplicationRecord
+  has_one_attached :floor_map
   has_many :users, dependent: :destroy
+  has_many :inquiries, dependent: :destroy
 
   with_options dependent: :nullify do
     has_many :tablewares

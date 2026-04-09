@@ -1,6 +1,9 @@
 scope module: :front do
   root "home#index"
-  resources :sessions, only: [ :new, :create ]
+  get :terms, to: "home#terms"
+  get :inquiry, to: "home#inquiry"
+  post :inquiry, to: "home#create_inquiry"
+  resources :sessions, only: [ :new, :create, :destroy ]
   resources :tablewares do
     collection do
       get :search

@@ -36,6 +36,14 @@ class Owner::PlacesController < Owner::MainController
     end
   end
 
+  def update_floor_map
+    @store.update(floor_map: params[:store][:floor_map])
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to owner_places_path }
+    end
+  end
+
   def destroy
     if @place.destroy
       flash[:notice] = t("helpers.flash.destroyed")

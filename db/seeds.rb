@@ -8,4 +8,5 @@ store_source.each do |values|
   store.active = true
 end
 
+load Rails.root.join("db/seeds/places.rb")
 load Rails.root.join("db/seeds/tablewares.rb")
