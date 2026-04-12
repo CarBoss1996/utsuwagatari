@@ -104,6 +104,13 @@ ja:
       header:
         one: "%{model}にエラーが発生しました"
         other: "%{model}に%{count}件のエラーが発生しました"
+  activerecord:
+    attributes:
+      inquiry:
+        status:
+          pending: 未対応
+          in_progress: 対応中
+          not_required: 対応不要
   helpers:
     select:
       prompt: 選択してください

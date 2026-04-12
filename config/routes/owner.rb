@@ -10,6 +10,7 @@ namespace :owner do
   resources :categories do
     resources :items, module: :categories
   end
+  resources :inquiries, only: [ :index, :show ]
   resources :places do
     collection do
       patch :update_floor_map

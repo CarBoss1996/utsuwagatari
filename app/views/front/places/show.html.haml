@@ -1,6 +1,10 @@
 .container.index
   .content
     %h3.text-center= @place.name
+    - if @place.image.attached?
+      .d-flex.justify-content-center.mb-4
+        .image= image_tag @place.image
+    %p.text-center ここに保管されているうつわ
     - if @tablewares.empty?
       %p.text-center うつわが見つかりませんでした。
     - else

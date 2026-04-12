@@ -19,6 +19,8 @@
       display: flex
       align-items: center
       gap: 1.5rem
+      +media-breakpoint-down(md)
+        gap: 0.5rem
     .header-nav-item
       display: flex
       flex-direction: column
@@ -33,37 +35,70 @@
       svg
         width: 24px
         height: 24px
-
-  .search-overlay
-    position: fixed
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
-    background-color: rgba(0,0,0,0.6)
-    z-index: 1000
-    display: flex
-    justify-content: center
-    align-items: center
-
-  .search-box
-    background: white
-    padding: 2rem
-    border-radius: 0.5rem
-    overflow-y: auto
-    position: relative
-    min-width: 300px
-    legend
-      border-bottom: solid 1px #333
-      font-size: 20px
-    .select2-container
-      width: 100% !important
-    .select2-selection--multiple
-      .select2-selection__rendered
+      &.bowl
+        margin-bottom: 3px
+        svg
+          width: 34px
+          height: 34px
+    .user-nav-item
+      position: relative
+      .user-icon-wrapper
+        position: relative
         display: flex
-        flex-wrap: wrap
-        gap: 4px
-        padding: 4px
+        flex-direction: column
+        align-items: center
+      .notification-badge
+        position: absolute
+        top: -2px
+        right: -2px
+        width: 10px
+        height: 10px
+        background-color: red
+        border-radius: 50%
+        &.pulse
+          animation: pulse 1.5s infinite
+@keyframes pulse
+  0%
+    transform: scale(1)
+    opacity: 1
+  50%
+    transform: scale(1.4)
+    opacity: 0.6
+  100%
+    transform: scale(1)
+    opacity: 1
+
+
+.search-overlay
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0,0,0,0.6)
+  z-index: 1100
+  display: flex
+  justify-content: center
+  align-items: center
+
+.search-box
+  background: white
+  padding: 2rem
+  border-radius: 0.5rem
+  overflow-y: auto
+  position: relative
+  min-width: 300px
+  legend
+    border-bottom: solid 1px #333
+    font-size: 20px
+  .select2-container
+    width: 100% !important
+  .select2-selection--multiple
+    .select2-selection__rendered
+      display: flex
+      flex-wrap: wrap
+      gap: 4px
+      padding: 4px
 
 .btn-close
   position: absolute

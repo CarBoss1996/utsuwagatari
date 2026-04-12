@@ -1,0 +1,32 @@
+.container.py-5
+  .d-flex.align-items-center.mb-4
+    %h2.me-auto お問い合わせ一覧
+    = link_to "新規お問い合わせ", new_inquiry_path, class: "btn btn-primary"
+
+  - if @inquiries.empty?
+    %p.text-center まだお問い合わせはありません。
+
+  .inquiry-list
+    - @inquiries.each do |inquiry|
+      - unread = inquiry.answers.any? { |a| a.read_at.nil? }
+      %details.inquiry-item{data: { controller: "inquiry", inquiry_read_url_value: read_inquiry_path(inquiry), action: "toggle->inquiry#toggle" }}
+        %summary.inquiry-summary
+          .inquiry-summary-inner
+            - if unread
+              %span.unread-badge
+            %span.inquiry-name= inquiry.body
+            %span.inquiry-date= l inquiry.created_at, format: :short
+
+        .inquiry-content
+          .list-item
+            .list-item-label お問い合わせ内容
+            .list-item-date= l inquiry.created_at, format: :long
+            .list-item-body= simple_format inquiry.body
+            -# - if inquiry.image.attached?
+            -#   = image_tag inquiry.image, style: "max-width: 200px"
+
+          - inquiry.answers.order(created_at: :desc).each do |answer|
+            .list-item.list-item-reply
+              .list-item-label 返答
+              .list-item-date= l answer.created_at, format: :long
+              .list-item-body= simple_format answer.body

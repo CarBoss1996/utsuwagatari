@@ -5,7 +5,8 @@ class Front::MainController < ApplicationController
   before_action :set_store
   before_action :store_active?
   before_action :check_auth
-  helper_method :logged_in?, :current_user
+  helper_method :logged_in?, :current_user, :unread_answers_count
+  before_action :set_unread_answers_count
 
   private
   def store_active?
@@ -13,6 +14,14 @@ class Front::MainController < ApplicationController
       head :not_found
       nil
     end
+  end
+
+  def set_unread_answers_count
+    @unread_answers_count = logged_in? ? @store.inquiries.joins(:answers).where(answers: { read_at: nil }).count : 0
+  end
+
+  def unread_answers_count
+    @unread_answers_count || 0
   end
 
   def current_user

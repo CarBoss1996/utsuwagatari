@@ -8,4 +8,7 @@ namespace :admin do
       end
     end
   end
+  resources :inquiries, only: [ :index, :show, :update ] do
+    resources :answers, only: [ :create, :destroy ]
+  end
 end

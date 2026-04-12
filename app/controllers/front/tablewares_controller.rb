@@ -8,7 +8,7 @@ class Front::TablewaresController < Front::MainController
 
   def show
     unless request.headers["X-Sec-Purpose"] == "prefetch" || request.headers["Purpose"] == "prefetch"
-      ids = ([ @tableware.id ] + recently_viewed_ids).uniq.first(10)
+      ids = ([ @tableware.id ] + recently_viewed_ids).uniq.first(20)
       session[:recently_viewed] = ids
     end
   end

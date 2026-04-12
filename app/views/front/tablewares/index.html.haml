@@ -23,6 +23,9 @@
                     = image_tag "no-image.png", class: "image"
                 .name= tw.name
                 .category= card_value tw, :categories_info
+          .d-flex.justify-content-end.mt-5
+            != pagy_bootstrap_nav(@pagy)
+
 
     #history.tab-pane.fade
       .content

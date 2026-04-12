@@ -1,0 +1,38 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{role: "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: owner_inquiries_path} 戻る
+
+.owner-container.mt-4
+  .container
+    .d-flex.mb-3
+      %h2.me-auto お問い合わせ詳細
+
+    .card.mb-4
+      .card-body
+        .row.mb-2
+          .col-sm-3.fw-bold 日時
+          .col-sm-9= l @inquiry.created_at, format: :long
+        .row.mb-2
+          .col-sm-3.fw-bold 名前
+          .col-sm-9= @inquiry.name
+        .row.mb-2
+          .col-sm-3.fw-bold メール
+          .col-sm-9= @inquiry.email
+        .row.mb-2
+          .col-sm-3.fw-bold 内容
+          .col-sm-9= simple_format @inquiry.body
+        - if @inquiry.image.attached?
+          .row.mb-2
+            .col-sm-3.fw-bold 画像
+            .col-sm-9= image_tag @inquiry.image, style: "max-width: 300px"
+
+    - if @inquiry.answers.any?
+      %hr
+      %h4 返答
+      - @inquiry.answers.order(created_at: :asc).each do |answer|
+        .card.mb-2
+          .card-body
+            %p.mb-0= simple_format answer.body
+            %small.text-muted= l answer.created_at, format: :long

@@ -1,7 +1,7 @@
 .footer
   .footer-nav
     = link_to "利用規約", terms_path
-    = link_to "お問い合わせ", inquiry_path
+    = link_to "お問い合わせ", logged_in? ? inquiries_path : new_inquiry_path
     - if logged_in?
       = button_to "ログアウト", session_path(current_user), method: :delete, class: "logout-btn"
     - else

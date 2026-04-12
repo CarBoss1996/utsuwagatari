@@ -1,0 +1,55 @@
+.owner-container.mt-4
+  .container
+    .d-flex.mb-3
+      %h2.me-auto お問い合わせ詳細
+      = link_to "一覧に戻る", admin_inquiries_path, class: "btn btn-outline-secondary"
+
+    .card.mb-4
+      .card-body
+        .row.mb-2
+          .col-sm-3.fw-bold 日時
+          .col-sm-9= l @inquiry.created_at, format: :long
+        .row.mb-2
+          .col-sm-3.fw-bold 店舗
+          .col-sm-9= @inquiry.store.name
+        .row.mb-2
+          .col-sm-3.fw-bold 名前
+          .col-sm-9= @inquiry.name
+        .row.mb-2
+          .col-sm-3.fw-bold メール
+          .col-sm-9= @inquiry.email.presence || "未入力"
+        .row.mb-2
+          .col-sm-3.fw-bold ステータス
+          .col-sm-9= I18n.t("activerecord.attributes.inquiry.status.#{@inquiry.status}")
+        .row.mb-2
+          .col-sm-3.fw-bold 内容
+          .col-sm-9= simple_format @inquiry.body
+        - if @inquiry.image.attached?
+          .row.mb-2
+            .col-sm-3.fw-bold 画像
+            .col-sm-9= image_tag @inquiry.image, style: "max-width: 300px"
+        - if @inquiry.memo.present?
+          .row.mb-2
+            .col-sm-3.fw-bold 対応メモ
+            .col-sm-9= simple_format @inquiry.memo
+
+    = simple_form_for @inquiry, url: admin_inquiry_path(@inquiry), method: :patch do |f|
+      %fieldset
+        %legend 対応管理
+        = f.input :status, as: :select, collection: Inquiry.statuses.keys.map { |s| [I18n.t("activerecord.attributes.inquiry.status.#{s}"), s] }, include_blank: false, label: "ステータス"
+        = f.input :memo, as: :text, label: "対応メモ（内部用）"
+        = f.button :submit, "保存する", class: "btn btn-primary mt-2"
+
+    %hr
+    %h4 返答
+    - @inquiry.answers.order(created_at: :asc).each do |answer|
+      .card.mb-2
+        .card-body
+          .d-flex.justify-content-between.align-items-start
+            %p.mb-0= simple_format answer.body
+            = button_to "削除", admin_inquiry_answer_path(@inquiry, answer), method: :delete, class: "btn btn-outline-danger btn-sm", data: { turbo_confirm: "削除しますか？" }
+          %small.text-muted= l answer.created_at, format: :long
+
+    = simple_form_for [@inquiry, Answer.new], url: admin_inquiry_answers_path(@inquiry) do |f|
+      = f.input :body, as: :text, label: "返答を追加する"
+      = f.button :submit, "返答する", class: "btn btn-primary mt-2"

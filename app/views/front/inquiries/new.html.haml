@@ -1,0 +1,16 @@
+.container.py-5
+  %h2.mb-4 お問い合わせ
+  = simple_form_for @inquiry, url: confirm_inquiries_path, method: :post, data: { turbo: false } do |f|
+    - if logged_in?
+      = hidden_field_tag "inquiry[name]", current_user.name
+    - else
+      = f.input :name, label: "お名前"
+    = f.input :body, as: :text, label: "お問い合わせ内容"
+    = f.input :image, as: :file, label: "画像（任意）"
+    .mb-3
+      = f.input :email, label: "メールアドレス（任意）", required: false
+      %small.text-muted
+        お問い合わせに返信がある場合はこのアプリ内に表示されます。
+        %br
+        通知が必要な場合やメールアドレス宛にご連絡が必要な場合はメールアドレスをご入力ください。
+    = f.button :submit, "確認する", class: "btn mt-2"

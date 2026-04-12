@@ -6,10 +6,13 @@
         %a{href: url_for(@store.floor_map), target: "_blank"} 配置図を見る
     .place-list
       - @places.each do |place|
-        = link_to place_path(place), class: "place-item" do
+        .place-item
+          .d-flex.justify-content-between.align-items-center.mb-3
+            .name= place.name
+            = link_to place_path(place), class: "btn btn-secondary" do
+              #{place.name}のうつわを見る
           .image-content
             - if place.image.attached?
               .image= image_tag place.image
             - else
               = image_tag "no-image.png", class: "image"
-          .name= place.name

@@ -1,0 +1,20 @@
+.owner-container.mt-4
+  .container
+    .title.d-flex.mb-2
+      %h2.me-auto お問い合わせ一覧
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 日時
+          %th 名前
+          %th ステータス
+          %th
+      %tbody
+        - @inquiries.each do |inquiry|
+          %tr
+            %td= l inquiry.created_at, format: :short
+            %td= inquiry.name
+            %td= I18n.t("activerecord.attributes.inquiry.status.#{inquiry.status}")
+            %td
+              = link_to "詳細", owner_inquiry_path(inquiry), class: "btn btn-outline-secondary btn-sm"
