@@ -4,9 +4,19 @@ lock "~> 3.20.0"
 set :application, "utuwagatari"
 set :repo_url, "git@github.com:CarBoss1996/utsuwagatari.git"
 
-set :branch, :main
-
-set :deploy_to, "/var/www/utuwagatari"
+# ステージ別の設定
+if fetch(:stage) == :production
+  # production: タグを指定してデプロイ（例: cap production deploy TAG=v1.0.0）
+  ask :branch, `git tag --sort=-v:refname | head -1`.chomp if ENV["TAG"].nil?
+  set :branch, ENV["TAG"] || fetch(:branch)
+  set :deploy_to, "/var/www/utuwagatari"
+  set :rails_env, "production"
+else
+  # staging: main ブランチを常にデプロイ
+  set :branch, :main
+  set :deploy_to, "/var/www/utuwagatari_staging"
+  set :rails_env, "staging"
+end
 
 set :rbenv_type, :user
 set :rbenv_ruby, File.read(".ruby-version").strip
@@ -31,6 +41,5 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 
 namespace :deploy do
-  desc "アセットのシンボリックリンクを更新"
   after :finishing, "deploy:cleanup"
 end
