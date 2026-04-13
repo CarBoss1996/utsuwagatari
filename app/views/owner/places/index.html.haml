@@ -26,10 +26,16 @@
       %thead
         %tr
           %th 名前
+          %th ステータス
           %th.show
       %tbody
         - @places.each do |place|
           %tr
             %td= place.name
+            %td
+              - if place.active?
+                %span.badge.bg-success 有効
+              - else
+                %span.badge.bg-secondary 無効
             %td.show
-              %a.btn.btn-outline-secondary{href: owner_place_path(place.id)} 詳細
+              %a.btn.btn-outline-secondary.btn-sm{href: owner_place_path(place)} 詳細

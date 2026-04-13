@@ -1,0 +1,10 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{role: "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: owner_users_path} 戻る
+
+.owner-container.mt-4
+  .container
+    %h2.mb-4 ユーザー新規作成
+    = render "form"

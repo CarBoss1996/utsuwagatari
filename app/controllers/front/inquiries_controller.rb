@@ -11,6 +11,14 @@ class Front::InquiriesController < Front::MainController
 
   def confirm
     @inquiry = @store.inquiries.new(inquiry_params)
+    if params.dig(:inquiry, :image).present?
+      blob = ActiveStorage::Blob.create_and_upload!(
+        io: params[:inquiry][:image],
+        filename: params[:inquiry][:image].original_filename,
+        content_type: params[:inquiry][:image].content_type
+      )
+      @image_signed_id = blob.signed_id
+    end
     render :new unless @inquiry.valid?
   end
 

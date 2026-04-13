@@ -6,10 +6,10 @@
       .row.mb-2
         .col-4.fw-bold 内容
         .col-8= simple_format @inquiry.body
-      - if @inquiry.image.attached?
+      - if @image_signed_id
         .row.mb-2
           .col-4.fw-bold 画像
-          .col-8= image_tag @inquiry.image, style: "max-width: 200px"
+          .col-8= image_tag url_for(ActiveStorage::Blob.find_signed(@image_signed_id)), style: "max-width: 200px"
       .row.mb-2
         .col-4.fw-bold メールアドレス
         .col-8= @inquiry.email.presence || "未入力"
@@ -18,6 +18,8 @@
     = hidden_field_tag "inquiry[name]", @inquiry.name
     = hidden_field_tag "inquiry[email]", @inquiry.email
     = hidden_field_tag "inquiry[body]", @inquiry.body
+    - if @image_signed_id
+      = hidden_field_tag "inquiry[image]", @image_signed_id
     .d-flex.gap-2
       = link_to "戻る", new_inquiry_path, class: "btn btn-outline-secondary"
       = f.submit "送信する", class: "btn btn-primary"

@@ -1,6 +1,6 @@
 = simple_form_for [:admin,@store], data: {turbo: false} do |f|
   %fieldset
     = f.input :name
-    = f.input :password
-    = f.input :password_confirmation
+    = f.input :tag_name
+    = f.input :active, as: :boolean, label: "公開する"
     = f.submit

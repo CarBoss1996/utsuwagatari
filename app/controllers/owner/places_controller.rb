@@ -63,6 +63,7 @@ class Owner::PlacesController < Owner::MainController
       :name,
       :body,
       :image,
+      :active,
     ).merge(store_id: @store.id)
   end
 end

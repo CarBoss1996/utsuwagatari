@@ -3,7 +3,7 @@ class Inquiry < ApplicationRecord
   belongs_to :store
   has_many :answers, dependent: :destroy
 
-  enum status: { pending: 0, in_progress: 1, not_required: 2 }
+  enum status: [:pending, :in_progress, :resolved, :not_required]
 
   validates :name, :body, presence: true
 end

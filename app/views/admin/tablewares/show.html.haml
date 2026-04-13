@@ -1,0 +1,38 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{role: "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: admin_tablewares_path} 戻る
+
+.owner-container.mt-4
+  .container
+    .d-flex.mb-3
+      %h2.me-auto うつわ詳細
+
+    .card.mb-4
+      .card-body
+        .row.mb-2
+          .col-sm-3.fw-bold 店舗
+          .col-sm-9= @tableware.store&.name
+        .row.mb-2
+          .col-sm-3.fw-bold 名前
+          .col-sm-9= @tableware.name
+        .row.mb-2
+          .col-sm-3.fw-bold 詳細
+          .col-sm-9= simple_format @tableware.body.to_s
+        .row.mb-2
+          .col-sm-3.fw-bold カテゴリー
+          .col-sm-9= @tableware.categories_info
+        .row.mb-2
+          .col-sm-3.fw-bold 保管場所
+          .col-sm-9= @tableware.places_info
+        .row.mb-2
+          .col-sm-3.fw-bold 履歴
+          .col-sm-9= @tableware.histories_info
+        - if @tableware.images.attached?
+          .row.mb-2
+            .col-sm-3.fw-bold 画像
+            .col-sm-9
+              .d-flex.flex-wrap.gap-2
+                - @tableware.images.each do |image|
+                  = image_tag url_for(image), style: "max-height: 120px;"

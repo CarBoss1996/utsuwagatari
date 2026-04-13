@@ -44,8 +44,7 @@ class Admin::StoresController < Admin::MainController
   def store_params
     params.require(:store).permit(
       :name,
-      :password,
-      :password_confirmation,
+      :tag_name,
       :active,
     )
   end

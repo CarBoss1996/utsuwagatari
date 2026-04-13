@@ -1,0 +1,19 @@
+.owner-container.mt-4
+  .container
+    .title.d-flex.mb-2
+      %h2.me-auto うつわ一覧
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 名前
+          %th 店舗
+          %th 登録日
+          %th
+      %tbody
+        - @tablewares.each do |tableware|
+          %tr
+            %td= tableware.name
+            %td= tableware.store&.name
+            %td= l tableware.created_at, format: :short
+            %td= link_to "詳細", admin_tableware_path(tableware), class: "btn btn-outline-secondary btn-sm"

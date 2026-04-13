@@ -24,3 +24,9 @@ ja:
         name: 名前
       category_item:
         name: 名前
+      inquiry:
+        status:
+          pending: 対応待ち
+          in_progress: 対応中
+          resolved: 対応済み
+          not_required: 対応不要

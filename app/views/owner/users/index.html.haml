@@ -1,0 +1,29 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{role: "tablist"}
+      %li.nav-item
+        %a.btn.btn-outline-success{href: new_owner_user_path} 新規作成
+
+.owner-container.mt-4
+  .container
+    %h2.mb-4 ユーザー管理
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th 名前
+          %th 権限
+          %th ステータス
+          %th
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td= user.role
+            %td
+              - if user.active?
+                %span.badge.bg-success 有効
+              - else
+                %span.badge.bg-secondary 無効
+            %td
+              = link_to "詳細", owner_user_path(user), class: "btn btn-outline-secondary btn-sm"

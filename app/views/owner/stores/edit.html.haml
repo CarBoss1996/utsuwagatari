@@ -1,0 +1,13 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{role: "tablist"}
+      %li.nav-item
+        %a.btn.btn-secondary{href: owner_store_path} 戻る
+
+.owner-container.mt-4
+  .container
+    %h2.mb-4 店舗設定を編集
+
+    = simple_form_for [:owner, @store] do |f|
+      = f.input :name
+      = f.button :submit, class: "btn btn-primary mt-2"

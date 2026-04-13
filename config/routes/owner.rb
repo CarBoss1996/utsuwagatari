@@ -1,6 +1,8 @@
 namespace :owner do
   root "home#index"
   resources :sessions, only: [ :new, :create ]
+  resource :store, only: [ :show, :edit, :update ]
+  resources :users, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
   resources :tablewares do
     member do
       post :image_upload

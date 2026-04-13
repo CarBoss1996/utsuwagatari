@@ -1,0 +1,7 @@
+= simple_form_for [:owner, @user], data: { turbo: false } do |f|
+  %fieldset
+    = f.input :name
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :active, as: :boolean, label: "有効"
+    = f.button :submit, class: "btn btn-primary mt-2"

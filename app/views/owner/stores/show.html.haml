@@ -1,0 +1,14 @@
+= content_for :headings do
+  .article-header-nav
+    %ul.nav.nav-pills{role: "tablist"}
+      %li.nav-item
+        %a.btn.btn-outline-success{href: edit_owner_store_path} 編集
+
+.owner-container.mt-4
+  .container
+    %h2.mb-4 店舗設定
+
+    .card
+      .card-body.list-group
+        = card_item @store, :name
+        = card_item @store, :tag_name
