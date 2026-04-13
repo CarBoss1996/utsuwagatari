@@ -52,6 +52,4 @@ test:
 #
 production:
   <<: *default
-  database: utuwagatari_production
-  username: utuwagatari
-  password: <%= ENV["UTUWAGATARI_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>

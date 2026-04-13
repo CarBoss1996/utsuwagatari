@@ -32,6 +32,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+gem "dotenv-rails", groups: [ :development, :production ]
 
 gem "bcrypt", "~> 3.1.7"
 gem "haml-rails"
@@ -41,6 +42,9 @@ gem "sassc-rails"
 gem "ransack"
 gem "where_exists"
 gem "pagy", "~> 9.0"
+
+# Use Active Storage with S3-compatible cloud storage
+gem "aws-sdk-s3", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -62,4 +66,11 @@ group :development do
 
   # Highlight the fine-grained location where an error occurred [https://github.com/ruby/error_highlight]
   gem "error_highlight", "~> 0.7.0"
+
+  # Deployment
+  gem "capistrano", "~> 3.19", require: false
+  gem "capistrano-rails", require: false
+  gem "capistrano-rbenv", require: false
+  gem "capistrano-bundler", require: false
+  gem "capistrano3-puma", require: false
 end
