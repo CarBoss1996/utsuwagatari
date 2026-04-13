@@ -26,6 +26,24 @@ threads threads_count, threads_count
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 port ENV.fetch("PORT", 3000)
 
+# ローカル HTTPS 対応（mkcert で証明書を生成した場合）
+# 生成方法:
+#   brew install mkcert
+#   mkcert -install
+#   mkdir -p config/ssl
+#   mkcert -cert-file config/ssl/local.pem -key-file config/ssl/local-key.pem "*.utsuwagatari.test"
+if Rails.env.development?
+  ssl_cert = Rails.root.join("config/ssl/local.pem")
+  ssl_key  = Rails.root.join("config/ssl/local-key.pem")
+  if ssl_cert.exist? && ssl_key.exist?
+    ssl_bind "0.0.0.0", ENV.fetch("SSL_PORT", 3001), {
+      key:         ssl_key.to_s,
+      cert:        ssl_cert.to_s,
+      verify_mode: "none"
+    }
+  end
+end
+
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
 
