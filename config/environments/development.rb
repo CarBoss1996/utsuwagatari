@@ -81,6 +81,10 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.compile = true
 
+  # *.utsuwagatari.test でアクセスするためのホスト許可
+  config.hosts << /.*\.utsuwagatari\.test/
+  # lvh.me はワイルドカードで 127.0.0.1 に解決するため /etc/hosts 不要の代替手段
   config.hosts << /.*\.lvh\.me/
-  config.action_dispatch.tld_length = 0
+  # tld_length = 1 で本番（.com）と同じサブドメイン解析ルール
+  config.action_dispatch.tld_length = 1
 end
