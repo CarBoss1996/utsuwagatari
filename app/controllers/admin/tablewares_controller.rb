@@ -1,6 +1,6 @@
 class Admin::TablewaresController < Admin::MainController
   def index
-    @tablewares = Tableware.includes(:store).order(created_at: :desc)
+    @pagy, @tablewares = pagy(Tableware.includes(:store).order(created_at: :desc))
   end
 
   def show

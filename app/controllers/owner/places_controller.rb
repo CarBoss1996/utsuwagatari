@@ -1,5 +1,5 @@
 class Owner::PlacesController < Owner::MainController
-  before_action :set_place, except: [ :index, :new, :create ]
+  before_action :set_place, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @places = @store.places

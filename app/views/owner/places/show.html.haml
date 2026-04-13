@@ -3,28 +3,21 @@
     %ul.nav.nav-pills{:role => "tablist"}
       %li.nav-item
         %a.btn.btn-secondary{href: owner_places_path} 戻る
+      %li.nav-item
+        %a.btn.btn-outline-success{href: edit_owner_place_path(@place)} 編集
+      %li.nav-item
+        = form_with url: owner_place_path(@place),class: "mb-0", method: :delete, html: {data: {turbo: false, confirm: "本当に削除しますか？"}} do
+          = submit_tag '削除', class: 'btn delete'
+
 
 .owner-container
   .container
-    #list.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
-      .title.d-flex
-        %h2.me-auto
-          = @place.name
-          %span 詳細
-    %table.table.table-striped
-      %thead
-        %tr
-          %th 名前
-          %th 説明
-          %th.show
-          %th.show
-      %tbody
-        %tr
-          %td= @place.name
-          %td= @place.body
-          %td.show
-            %a.btn.btn-outline-success{href: edit_owner_place_path(@place)} 編集
-          %td.show
-            = form_with url: owner_place_path(@place), method: :delete, html: {data: {turbo: false, confirm: "本当に削除しますか？"}} do
-              = submit_tag '削除', class: 'btn btn-outline-danger'
-
+    .list-group 
+      - if @place.image.attached?
+        .d-flex.justify-content-center.mb-4
+          .image= image_tag @place.image
+      = card_item @place,:name
+      = card_item @place,:body
+      = card_item @place,:active, as: :boolean
+      = card_item @place,:created_at
+      = card_item @place,:updated_at

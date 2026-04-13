@@ -1,10 +1,11 @@
 class Admin::StoresController < Admin::MainController
-  before_action :set_store
+  before_action :set_store, only: [ :show, :edit, :update, :destroy ]
   def index
-    @stores = Store.all
+    @pagy, @stores = pagy(Store.order(:name))
   end
 
   def show
+    @pagy, @tablewares = pagy(@store.tablewares.order(:name))
   end
 
   def new
@@ -20,6 +21,15 @@ class Admin::StoresController < Admin::MainController
       flash[:alert] = t("helpers.flash.not_created")
       render :new
     end
+  end
+
+  def destroy
+    if @store.destroy
+      flash[:notice] = t("helpers.flash.destroyed")
+    else
+      flash[:alert] = t("helpers.flash.not_destroyed")
+    end
+    redirect_to admin_stores_path
   end
 
   def edit

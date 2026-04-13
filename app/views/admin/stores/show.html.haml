@@ -3,6 +3,10 @@
     %ul.nav.nav-pills{:role => "tablist"}
       %li.nav-item
         %a.btn.btn-secondary{href: admin_stores_path} 戻る
+      %li.nav-item
+        %a.btn.btn-outline-success{href: edit_admin_store_path(@store)} 編集
+      %li.nav-item
+        = button_to "削除", admin_store_path(@store), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？" }
 
 .admin-container
   .container
@@ -27,14 +31,16 @@
                 %a.btn.btn-outline-secondary{href: edit_admin_store_user_path(user: user, store_id: @store.id)} 編集
 
 
-      .title
+      .title.d-flex.align-items-baseline.justify-content-between
         %h2.mt-5 うつわ一覧
+        != pagy_bootstrap_nav(@pagy)
       %table.table.table-striped.mt-2
         %thead
           %tr
             %th 名前
-            %th 作家名
+            %th
         %tbody
-          %tr
-            %td= @store.name
-            %td
+          - @tablewares.each do |tw|
+            %tr
+              %td= tw.name
+              %td= link_to "詳細", admin_tableware_path(tw), class: "btn btn-outline-secondary btn-sm"

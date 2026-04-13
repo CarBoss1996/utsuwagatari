@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::MainController
   before_action :set_user, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @stores = Store.includes(:users).order(:name)
+    @pagy, @stores = pagy(Store.includes(:users).order(:name))
   end
 
   def show

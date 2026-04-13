@@ -14,6 +14,6 @@ class Store < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :tag_name
-    validates :active
   end
+  # validates :active, inclusion: { in: [ true, false ] }
 end

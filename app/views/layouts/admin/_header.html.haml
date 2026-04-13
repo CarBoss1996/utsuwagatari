@@ -1,2 +1,12 @@
-.header
-  %h4 うつわがたり | 管理画面
+.header.d-flex.align-items-center.justify-content-between.px-3
+  %h4.mb-0 うつわがたり | 管理画面
+  - if logged_in?
+    .dropdown
+      %button.dropdown-toggle.btn.btn-link.text-dark.p-0{type: "button", "data-bs-toggle" => "dropdown", "aria-expanded" => "false"}
+        %i.bi.bi-person-circle{"style" => "font-size: 1.5rem;"}
+      %ul.dropdown-menu.dropdown-menu-end
+        %li.dropdown-item.fw-bold
+          = current_user.name
+        %li.dropdown-divider
+        %li
+          = button_to "ログアウト", admin_session_path(current_user), method: :delete, class: "dropdown-item text-danger border-0 bg-transparent w-100 text-start"

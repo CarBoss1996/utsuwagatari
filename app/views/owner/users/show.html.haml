@@ -7,7 +7,7 @@
         %li.nav-item
           = link_to "編集", edit_owner_user_path(@user), class: "btn btn-outline-success"
         %li.nav-item
-          = button_to "削除", owner_user_path(@user), method: :delete, class: "btn btn-outline-danger", data: { turbo_confirm: "本当に削除しますか？" }
+          = button_to "削除", owner_user_path(@user), method: :delete, class: "btn delete", data: { turbo_confirm: "本当に削除しますか？" }
 
 .owner-container.mt-4
   .container

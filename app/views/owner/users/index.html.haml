@@ -1,12 +1,8 @@
-= content_for :headings do
-  .article-header-nav
-    %ul.nav.nav-pills{role: "tablist"}
-      %li.nav-item
-        %a.btn.btn-outline-success{href: new_owner_user_path} 新規作成
-
 .owner-container.mt-4
   .container
-    %h2.mb-4 ユーザー管理
+    .title.d-flex.justify-content-between.mb-4
+      %h2 ユーザー管理
+      %a.btn.btn-outline-success{href: new_owner_user_path} 新規作成
 
     %table.table.table-striped
       %thead

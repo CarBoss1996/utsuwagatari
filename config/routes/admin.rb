@@ -1,6 +1,6 @@
 namespace :admin do
   root "home#index"
-  resources :sessions, only: [ :new, :create ]
+  resources :sessions, only: [ :new, :create, :destroy ]
   resources :users, only: [ :index, :show, :edit, :update, :destroy ]
   resources :stores do
     resources :users do

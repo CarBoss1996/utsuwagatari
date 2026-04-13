@@ -17,3 +17,4 @@
             %td= tableware.store&.name
             %td= l tableware.created_at, format: :short
             %td= link_to "詳細", admin_tableware_path(tableware), class: "btn btn-outline-secondary btn-sm"
+      != pagy_bootstrap_nav(@pagy) if @pagy.pages > 1

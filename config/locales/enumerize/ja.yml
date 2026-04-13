@@ -1,2 +1,12 @@
 ja:
   enumerize:
+    user:
+      role:
+        admin: 管理者
+        store_owner: オーナー
+    inquery:
+      status:
+        waiting: 対応待ち
+        in_progress: 対応中
+        resolved: 対応済み
+        not_required: 対応不要

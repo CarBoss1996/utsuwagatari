@@ -1,4 +1,6 @@
 class Admin::MainController < ApplicationController
+  include Pagy::Backend
+
   layout "admin/main"
   skip_before_action :set_store
   before_action :check_auth

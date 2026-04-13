@@ -32,3 +32,4 @@
                     = link_to "詳細", admin_user_path(user), class: "btn btn-outline-secondary btn-sm"
         - else
           %p.text-muted.small ユーザーなし
+      != pagy_bootstrap_nav(@pagy) if @pagy.pages > 1

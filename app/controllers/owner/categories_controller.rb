@@ -1,5 +1,5 @@
 class Owner::CategoriesController < Owner::MainController
-  before_action :set_category, except: [ :index ]
+  before_action :set_category, only: [ :show, :edit, :update, :destroy ]
   def index
     @categories = @store.categories.all
   end
@@ -34,6 +34,15 @@ class Owner::CategoriesController < Owner::MainController
       flash[:alert] = t("helpers.flash.not_updated")
       render :edit
     end
+  end
+
+  def destroy
+    if @category.destroy
+      flash[:notice] = t("helpers.flash.destroyed")
+    else
+      flash[:alert] = t("helpers.flash.not_destroyed")
+    end
+    redirect_to owner_categories_path
   end
 
   private

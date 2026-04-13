@@ -5,16 +5,27 @@
         %h2 うつわがたり
       .header-nav
         = link_to tablewares_path, class: "header-nav-item bowl" do
-          = render "layouts/front/icon_bowl"
+          = render "layouts/front/icon/bowl"
         = link_to places_path, class: "header-nav-item" do
-          = render "layouts/front/icon_place"
+          = render "layouts/front/icon/place"
         = button_tag type: "button", class: "header-nav-item search-button", data: { action: "search-overlay#open" } do
-          = render "layouts/front/icon_search"
-        = link_to inquiries_path, class: "header-nav-item user-nav-item" do
-          .user-icon-wrapper
-            = render "layouts/front/icon_user"
-            - if unread_answers_count > 0
-              %span.notification-badge{class: "pulse"}
+          = render "layouts/front/icon/search"
+        .header-nav-item.user-nav-item.dropdown
+          %button.header-nav-item{type: "button", "data-bs-toggle" => "dropdown", "aria-expanded" => "false"}
+            .user-icon-wrapper
+              = render "layouts/front/icon/user"
+              - if unread_answers_count > 0
+                %span.notification-badge{class: "pulse"}
+          %ul.dropdown-menu.dropdown-menu-end
+            - if logged_in?
+              %li.dropdown-item.fw-bold= current_user.name
+              %li.dropdown-divider
+              %li= link_to "お問い合わせ", inquiries_path, class: "dropdown-item"
+              %li
+                = form_with url: session_path(current_user), method: :delete, html: {data: {turbo: false, confirm: "本当にログアウトしますか？"}} do
+                  = submit_tag "ログアウト", class: "dropdown-item"
+            - else
+              %li= link_to "ログイン", new_session_path, class: "dropdown-item"
 
   #search-overlay.search-overlay.d-none{ data: { search_overlay_target: "panel"}}
     .search-box{data: {action: "click->search-overlay#stop"}}
@@ -30,4 +41,6 @@
         %fieldset.mb-3
           = Place.model_name.human
           = select_tag "place_ids[]", options_from_collection_for_select(@store.places.active, :id, :name, Array(params[:place_ids]).map(&:to_i)), multiple: true, class: "form-control", data: { controller: "select2" }
-        = f.submit "検索", class: "btn btn-primary"
+        .btn-section
+          = link_to "リセット", tablewares_path, class: "btn btn-secondary"
+          = f.submit "検索", class: "btn btn-primary"

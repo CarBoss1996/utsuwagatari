@@ -24,6 +24,11 @@ class Front::InquiriesController < Front::MainController
 
   def create
     @inquiry = @store.inquiries.new(inquiry_params)
+    signed_id = params.dig(:inquiry, :image)
+    if signed_id.present? && !signed_id.is_a?(ActionDispatch::Http::UploadedFile)
+      blob = ActiveStorage::Blob.find_signed(signed_id)
+      @inquiry.image.attach(blob) if blob
+    end
     if @inquiry.save
       redirect_to inquiries_path, notice: "お問い合わせを送信しました"
     else

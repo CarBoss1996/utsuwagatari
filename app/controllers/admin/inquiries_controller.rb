@@ -1,5 +1,5 @@
 class Admin::InquiriesController < Admin::MainController
-  before_action :set_inquiry, only: [ :show ]
+  before_action :set_inquiry, only: [ :show, :update ]
 
   def index
     @inquiries = Inquiry.includes(:store).order(updated_at: :desc)

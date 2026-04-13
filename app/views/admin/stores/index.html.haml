@@ -25,3 +25,4 @@
               %a.btn.btn-outline-secondary{href: admin_store_path(store.id)} 詳細
             %td.show
               %a.btn.btn-outline-success{href: edit_admin_store_path(store.id)} 編集
+      != pagy_bootstrap_nav(@pagy) if @pagy.pages > 1

@@ -1,4 +1,4 @@
-.owner-container.mt-4
+.admin-container.mt-4
   .container
     .d-flex.mb-3
       %h2.me-auto お問い合わせ詳細
@@ -46,7 +46,7 @@
       .card.mb-2
         .card-body
           .d-flex.justify-content-between.align-items-start
-            %p.mb-0= simple_format answer.body
+            = simple_format answer.body
             = button_to "削除", admin_inquiry_answer_path(@inquiry, answer), method: :delete, class: "btn btn-outline-danger btn-sm", data: { turbo_confirm: "削除しますか？" }
           %small.text-muted= l answer.created_at, format: :long
 

@@ -3,12 +3,12 @@ class User < ApplicationRecord
   belongs_to :store
 
   validates :name, length: { maximum: 20 }
-  validates :password, length: { minimum: 6, maximum: 20 }
+  validates :password, length: { minimum: 6, maximum: 20 }, if: -> { new_record? || password.present? }
 
   with_options presence: true do
     validates :name
     validates :role
-    validates :active
+    # validates :active
   end
 
   enum role: [ :user, :store_owner, :admin ]

@@ -1,6 +1,6 @@
 .container.index
   .content
-    %h3.text-center 保管場所一覧
+    %h3.text-center 保管場所
     - if @store.floor_map.attached?
       .d-flex.justify-content-end.mb-2
         %a{href: url_for(@store.floor_map), target: "_blank"} 配置図を見る

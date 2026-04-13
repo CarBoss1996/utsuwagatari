@@ -1,9 +1,23 @@
-.sidebar
+%nav.sidebar.d-none.d-md-flex
   .body
     %a.link{href: owner_tablewares_path} うつわ
     %a.link{href: owner_categories_path} カテゴリー
     %a.link{href: owner_places_path} 保管場所
     %a.link{href: owner_users_path} ユーザー管理
-    %a.link{href: "#"} お知らせ
+    -# %a.link{href: "#"} お知らせ
     %a.link{href: owner_inquiries_path} お問い合わせ
     %a.link{href: owner_store_path} 設定
+
+.offcanvas.offcanvas-start{"tabindex" => "-1", id: "sidebarOffcanvas", "aria-labelledby" => "sidebarOffcanvasLabel"}
+  .offcanvas-header
+    %h5.offcanvas-title#sidebarOffcanvasLabel メニュー
+    %button.btn-close{"data-bs-dismiss" => "offcanvas", "aria-label" => "Close"}
+  .offcanvas-body
+    .d-flex.flex-column.gap-3
+      %a.link{href: owner_tablewares_path} うつわ
+      %a.link{href: owner_categories_path} カテゴリー
+      %a.link{href: owner_places_path} 保管場所
+      %a.link{href: owner_users_path} ユーザー管理
+      -# %a.link{href: "#"} お知らせ
+      %a.link{href: owner_inquiries_path} お問い合わせ
+      %a.link{href: owner_store_path} 設定
