@@ -1,5 +1,5 @@
 # HetznerのサーバーIPを設定する（VPS作成後に変更）
-server "YOUR_SERVER_IP", user: "deploy", roles: %w[app db web]
+server "133.117.72.20", user: "deploy", roles: %w[app db web]
 
 set :ssh_options, {
   keys: %w[~/.ssh/id_ed25519],

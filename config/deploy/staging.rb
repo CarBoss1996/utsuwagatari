@@ -1,6 +1,6 @@
 # staging は production と同じサーバーでもOK（別ディレクトリで共存）
 # 別サーバーにする場合は異なるIPを指定する
-server "YOUR_SERVER_IP", user: "deploy", roles: %w[app db web]
+server "133.117.72.20", user: "deploy", roles: %w[app db web]
 
 set :ssh_options, {
   keys: %w[~/.ssh/id_ed25519],

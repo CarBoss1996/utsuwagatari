@@ -6,14 +6,11 @@ set :repo_url, "git@github.com:CarBoss1996/utsuwagatari.git"
 
 # ステージ別の設定
 if fetch(:stage) == :production
-  # production: タグを指定してデプロイ（例: cap production deploy TAG=v1.0.0）
-  ask :branch, `git tag --sort=-v:refname | head -1`.chomp if ENV["TAG"].nil?
-  set :branch, ENV["TAG"] || fetch(:branch)
+  set :branch, :main
   set :deploy_to, "/var/www/utuwagatari"
   set :rails_env, "production"
 else
-  # staging: main ブランチを常にデプロイ
-  set :branch, :main
+  set :branch, :stage
   set :deploy_to, "/var/www/utuwagatari_staging"
   set :rails_env, "staging"
 end
