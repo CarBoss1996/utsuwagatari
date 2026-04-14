@@ -36,6 +36,9 @@ set :puma_error_log, "#{release_path}/log/puma.error.log"
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
+# Puma systemd 設定
+set :puma_service_unit_name, "puma_utuwagatari_production.service"
+set :puma_enable_lingering, false
 
 namespace :deploy do
   after :finishing, "deploy:cleanup"
