@@ -98,6 +98,7 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    bcrypt_pbkdf (1.1.2)
     benchmark (0.4.0)
     bigdecimal (3.1.9)
     bindex (0.8.1)
@@ -138,6 +139,7 @@ GEM
       dotenv (= 3.2.0)
       railties (>= 6.1)
     drb (2.2.1)
+    ed25519 (1.4.0)
     error_highlight (0.7.0)
     erubi (1.13.1)
     execjs (2.10.0)
@@ -388,6 +390,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-s3
   bcrypt (~> 3.1.7)
+  bcrypt_pbkdf (~> 1.0)
   bootsnap
   bootstrap (~> 5.3.3)
   brakeman
@@ -398,6 +401,7 @@ DEPENDENCIES
   capistrano3-puma
   debug
   dotenv-rails
+  ed25519 (~> 1.2)
   error_highlight (~> 0.7.0)
   haml-rails
   importmap-rails
