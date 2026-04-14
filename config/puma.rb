@@ -32,13 +32,13 @@ port ENV.fetch("PORT", 3000)
 #   mkcert -install
 #   mkdir -p config/ssl
 #   mkcert -cert-file config/ssl/local.pem -key-file config/ssl/local-key.pem "*.utsuwagatari.test"
-if Rails.env.development?
-  ssl_cert = Rails.root.join("config/ssl/local.pem")
-  ssl_key  = Rails.root.join("config/ssl/local-key.pem")
-  if ssl_cert.exist? && ssl_key.exist?
+if ENV.fetch("RAILS_ENV", "development") == "development"
+  ssl_cert_path = File.expand_path("../config/ssl/local.pem", __dir__)
+  ssl_key_path  = File.expand_path("../config/ssl/local-key.pem", __dir__)
+  if File.exist?(ssl_cert_path) && File.exist?(ssl_key_path)
     ssl_bind "0.0.0.0", ENV.fetch("SSL_PORT", 3001), {
-      key:         ssl_key.to_s,
-      cert:        ssl_cert.to_s,
+      key:         ssl_key_path,
+      cert:        ssl_cert_path,
       verify_mode: "none"
     }
   end
