@@ -40,3 +40,7 @@
 
 # password
 /password
+
+# docs
+# 機密情報を含む可能性のあるドキュメント
+docs/deploy-*.md
