@@ -28,7 +28,10 @@ class Owner::TablewaresController < Owner::MainController
   end
 
   def update
-    if @tableware.update(tableware_params)
+    saved_params = tableware_params
+    new_images = saved_params.delete(:images)
+    if @tableware.update(saved_params)
+      @tableware.images.attach(new_images) if new_images.present?
       flash[:notice] = t("helpers.flash.created")
       redirect_to owner_tablewares_path
     else
@@ -67,7 +70,7 @@ class Owner::TablewaresController < Owner::MainController
     else
       flash[:alert] = t("helpers.flash.destroy_deny", model: "画像")
     end
-    redirect_to owner_tableware_path(@tableware)
+    redirect_back fallback_location: owner_tableware_path(@tableware)
   end
 
   private

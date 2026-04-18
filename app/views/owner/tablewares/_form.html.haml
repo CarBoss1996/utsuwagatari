@@ -1,6 +1,15 @@
+- if @tableware.persisted? && @tableware.images.attached?
+  .mb-3
+    %p.fw-bold 登録済みの画像
+    .d-flex.flex-wrap.gap-2
+      - @tableware.images.each do |image|
+        .position-relative.d-inline-block
+          = image_tag url_for(image), class: "img-thumbnail", style: "width: 120px; height: 120px; object-fit: cover;"
+          = button_to "×", owner_tableware_image_destroy_path(@tableware, image_id: image.id), method: :delete, form: { data: { turbo: false } }, class: "btn btn-danger btn-sm position-absolute top-0 end-0", style: "line-height: 1; padding: 2px 6px;"
+
 = simple_form_for [:owner, @tableware], html: { multipart: true }, data: { turbo: false } do |f|
   %fieldset
-    = f.input :name,required: true
+    = f.input :name, required: true
     = f.input :body
     %h4 カテゴリー選択する
     - @categories.each do |category|
@@ -20,12 +29,8 @@
         = h.input :entrance_on, as: :string, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
         = h.input :exit_on, as: :string, require: false, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
 
-    -# - if @tableware.images.attached?
-    -#   .my-3
-    -#     %p 現在の画像
-    -#     - @tableware.images.each do |image|
-    -#       = image_tag url_for(image), class: "img-thumbnail me-2", style: "max-width: 150px;"
-
-    -# = f.input :images, as: :file, input_html: {multiple: true, name: "tableware[images][]"}
+    .mb-3
+      = f.label :images, "画像を追加"
+      = f.file_field :images, multiple: true, name: "tableware[images][]", class: "form-control"
 
     = f.submit "登録する", class: "btn btn-primary mt-3"
