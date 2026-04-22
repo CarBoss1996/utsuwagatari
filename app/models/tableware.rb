@@ -14,6 +14,7 @@ class Tableware < ApplicationRecord
   with_options presence: true do
     validates :name
   end
+  validates :quantity, numericality: { greater_than: 0, only_integer: true }, allow_nil: true
   accepts_nested_attributes_for :histories
   accepts_nested_attributes_for :tableware_categories, allow_destroy: true, reject_if: ->(attributes) { attributes["category_item_id"].blank? }
 

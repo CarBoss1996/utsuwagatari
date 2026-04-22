@@ -11,6 +11,7 @@
   %fieldset
     = f.input :name, required: true
     = f.input :body
+    = f.input :quantity, as: :integer, min: 1
     %h4 カテゴリー選択する
     - @categories.each do |category|
       - tableware_category = @tableware.tableware_categories.find { |tc| tc.category_id == category.id } || @tableware.tableware_categories.build(category: category)
@@ -22,12 +23,12 @@
           .col-md-6
             = tc.input :category_item_id, collection: category.category_items, label: false
 
-    = f.input :place_ids, collection: Place.active, input_html: {data: {controller: "select2"}, multiple: true}
+    = f.input :place_ids, collection: @store.places.active, input_html: {data: {controller: "select2"}, multiple: true}
     - @tableware.histories.build if @tableware.histories.empty?
     = f.simple_fields_for :histories do |h|
       .row
-        = h.input :entrance_on, as: :string, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
-        = h.input :exit_on, as: :string, require: false, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
+        -# = h.input :entrance_on, as: :string, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
+        -# = h.input :exit_on, as: :string, require: false, input_html: { type: 'date' }, wrapper_html: { class: 'col-auto' }
 
     .mb-3
       = f.label :images, "画像を追加"

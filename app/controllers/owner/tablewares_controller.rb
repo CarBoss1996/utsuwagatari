@@ -83,6 +83,7 @@ class Owner::TablewaresController < Owner::MainController
     permitted = params.require(:tableware).permit(
       :name,
       :body,
+      :quantity,
       :history,
       images: [],
       place_ids: [],
