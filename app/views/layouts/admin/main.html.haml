@@ -6,6 +6,10 @@
     %meta{:content => "ja", :name => "language"}/
     %link{:href => "https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c", :rel => "stylesheet"}/
     %link{rel: "icon", type: "image/x-icon", href: "/favicon.ico"}
+    %link{rel: "icon", href: "/icon.png", type: "image/png"}
+    %link{rel: "icon", href: "/icon.svg", type: "image/svg+xml"}
+    %link{rel: "apple-touch-icon", href: "/icon.png"}
+    %link{rel: "manifest", href: "/manifest.json"}
     = csrf_meta_tags
     = stylesheet_link_tag "admin/main", "data-turbo-track": "reload"
     = stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css", media: "all"
