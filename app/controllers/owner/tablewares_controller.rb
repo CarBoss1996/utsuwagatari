@@ -84,7 +84,7 @@ class Owner::TablewaresController < Owner::MainController
       :name,
       :body,
       :quantity,
-      :history,
+      :active,
       images: [],
       place_ids: [],
       histories_attributes: [ :id, :entrance_on, :exit_on ],

@@ -23,6 +23,7 @@ ja:
         name: 名前
         body: 詳細
         quantity: 数量
+        active: 有効/無効
         categories_info: カテゴリー
         places_info: 場所
         place_ids: 場所

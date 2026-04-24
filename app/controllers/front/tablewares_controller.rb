@@ -26,7 +26,7 @@ class Front::TablewaresController < Front::MainController
   end
 
   def set_tableware
-    @tableware = @store.tablewares.find_by(id: params[:id] || params[:tableware_id])
+    @tableware = @store.tablewares.active.find_by(id: params[:id] || params[:tableware_id])
   end
 
   def tableware_params

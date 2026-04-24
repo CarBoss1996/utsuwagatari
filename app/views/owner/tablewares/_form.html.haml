@@ -33,5 +33,5 @@
     .mb-3
       = f.label :images, "画像を追加"
       = f.file_field :images, multiple: true, name: "tableware[images][]", class: "form-control"
-
+    = f.input :active, as: :boolean
     = f.submit "登録する", class: "btn btn-primary mt-3"

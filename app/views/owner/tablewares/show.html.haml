@@ -19,9 +19,9 @@
         = card_item @tableware,:name
         = card_item @tableware,:body
         = card_item @tableware,:quantity
+        = card_item @tableware,:active, as: :boolean
         = card_item @tableware, :categories_info
         = card_item @tableware, :places_info
-        = card_item @tableware, :histories_info
         %h4.mt-4 画像一覧
         .d-flex
           - @tableware.images.each do |image|
