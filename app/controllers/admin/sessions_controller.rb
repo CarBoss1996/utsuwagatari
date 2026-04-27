@@ -3,7 +3,7 @@ class Admin::SessionsController < Admin::MainController
   def new
   end
   def create
-    @user = User.find_by(name: session_params[:name])
+    @user = User.find_by(email: session_params[:email])
     if @user && @user.authenticate(session_params[:password])
       if @user.role == "admin"
         session[:user_id] = @user.id
@@ -20,14 +20,14 @@ class Admin::SessionsController < Admin::MainController
 
   def destroy
     session.delete(:user_id)
-    render :new, notice: "ログアウトしました"
+    redirect_to new_admin_session_path, notice: "ログアウトしました"
   end
 
   private
 
   def session_params
     params.require(:session).permit(
-      :name,
+      :email,
       :password,
     )
   end

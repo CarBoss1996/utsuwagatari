@@ -2,7 +2,7 @@ class Front::TablewaresController < Front::MainController
   before_action :set_tableware, except: [ :index, :search ]
 
   def index
-    @pagy, @tablewares = pagy(@store.tablewares)
+    @pagy, @tablewares = pagy(@store.tablewares.active)
     @recently_viewed = @store.tablewares.where(id: recently_viewed_ids).index_by(&:id).values_at(*recently_viewed_ids).compact
   end
 

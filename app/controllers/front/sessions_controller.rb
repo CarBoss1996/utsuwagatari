@@ -4,7 +4,7 @@ class Front::SessionsController < Front::MainController
   end
 
   def create
-    @user = User.find_by(name: session_params[:name])
+    @user = User.find_by(email: session_params[:email])
     if @user && @user.authenticate(session_params[:password]) && @user.store_id == @store.id
       session[:front_user_id] = @user.id
       redirect_to tablewares_path, notice: "ログインしました"
@@ -23,7 +23,7 @@ class Front::SessionsController < Front::MainController
 
   def session_params
     params.require(:session).permit(
-      :name,
+      :email,
       :password,
     )
   end

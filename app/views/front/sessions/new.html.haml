@@ -3,7 +3,7 @@
     .card-body
       .form.mx-auto
         = simple_form_for :session, url: sessions_path, data: {turbo: false} do |f|
-          = f.input :name, required: true
+          = f.input :email
           = f.input :password
           .btn-section
             = f.button :submit, class: "btn btn-submit"

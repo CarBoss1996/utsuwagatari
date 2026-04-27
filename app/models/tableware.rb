@@ -18,6 +18,7 @@ class Tableware < ApplicationRecord
   accepts_nested_attributes_for :histories
   accepts_nested_attributes_for :tableware_categories, allow_destroy: true, reject_if: ->(attributes) { attributes["category_item_id"].blank? }
 
+  scope :active, -> { where(active: true) }
   def categories_info
     self.tableware_categories.currents.map do |tc|
       "#{tc.category.name}：#{tc.category_item.name}"
