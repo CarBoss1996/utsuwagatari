@@ -1,6 +1,6 @@
 class Owner::UsersController < Owner::MainController
   before_action :set_user, only: [ :show, :edit, :update, :destroy ]
-  before_action :protect_owner_account, only: [ :update, :destroy ]
+  before_action :protect_owner_account, only: [ :destroy ]
 
   def index
     @users = @store.users.order(created_at: :desc)
@@ -28,7 +28,7 @@ class Owner::UsersController < Owner::MainController
   end
 
   def update
-    if @user.update(user_params.merge(role: :user))
+    if @user.update(user_params)
       flash[:notice] = t("helpers.flash.updated")
       redirect_to owner_users_path
     else
@@ -60,6 +60,13 @@ class Owner::UsersController < Owner::MainController
   end
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation, :active)
+    params.require(:user).permit(
+      :name,
+      :email,
+      :password,
+      :password_confirmation,
+      :active,
+      :role
+      )
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_24_061837) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_24_063750) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -129,16 +129,17 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_24_061837) do
     t.string "name"
     t.text "body"
     t.integer "quantity"
+    t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "store_id"
-    t.boolean "active", default: true, null: false
     t.index ["store_id"], name: "index_tablewares_on_store_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "store_id", null: false
     t.string "name"
+    t.string "email"
     t.string "password_digest"
     t.integer "role", default: 0, null: false
     t.boolean "active", default: true

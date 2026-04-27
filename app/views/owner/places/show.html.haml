@@ -19,5 +19,5 @@
       = card_item @place,:name
       = card_item @place,:body
       = card_item @place,:active, as: :boolean
-      = card_item @place,:created_at
-      = card_item @place,:updated_at
+      = card_item @place,:created_at, as: :datetime
+      = card_item @place,:updated_at, as: :datetime

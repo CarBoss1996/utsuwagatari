@@ -1,7 +1,9 @@
 = simple_form_for [:owner, @user], data: { turbo: false } do |f|
   %fieldset
     = f.input :name
-    = f.input :password
-    = f.input :password_confirmation
+    = f.input :email
+    = f.input :password, hint: "6文字以上20文字以下で入力してください", input_html: { autocomplete: "new-password" }
+    = f.input :password_confirmation, hint: "6文字以上20文字以下で入力してください", input_html: { autocomplete: "new-password" }
+    = f.input :role, as: :radio_buttons, collection: User.roles.keys.reject { |role| role == "admin" }, item_wrapper_class: "form-check form-check-inline"
     = f.input :active, as: :boolean, label: "有効"
     = f.button :submit, class: "btn btn-primary mt-2"

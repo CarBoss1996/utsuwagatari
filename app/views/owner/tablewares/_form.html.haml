@@ -23,7 +23,7 @@
           .col-md-6
             = tc.input :category_item_id, collection: category.category_items, label: false
 
-    = f.input :place_ids, collection: @store.places.active, input_html: {data: {controller: "select2"}, multiple: true}
+    = f.input :place_ids, collection: @store.places.active, input_html: { data: { controller: "select2" }, multiple: true }
     - @tableware.histories.build if @tableware.histories.empty?
     = f.simple_fields_for :histories do |h|
       .row

@@ -23,13 +23,14 @@ ja:
         name: 名前
         body: 詳細
         quantity: 数量
-        active: 有効/無効
+        active: 有効
         categories_info: カテゴリー
         places_info: 場所
         place_ids: 場所
         histories_info: 履歴
       user:
         name: 名前
+        email: メールアドレス
         password: パスワード
         submit: ログイン
         password_confirmation: パスワード確認

@@ -3,9 +3,9 @@
     %ul.nav.nav-pills{role: "tablist"}
       %li.nav-item
         %a.btn.btn-secondary{href: owner_users_path} 戻る
-      - unless @user.store_owner? || @user.admin? || @user == current_user
-        %li.nav-item
-          = link_to "編集", edit_owner_user_path(@user), class: "btn btn-outline-success"
+      %li.nav-item
+        = link_to "編集", edit_owner_user_path(@user), class: "btn btn-outline-success"
+      - unless @user == current_user
         %li.nav-item
           = button_to "削除", owner_user_path(@user), method: :delete, class: "btn delete", data: { turbo_confirm: "本当に削除しますか？" }
 
@@ -18,6 +18,9 @@
         .row.mb-2
           .col-sm-3.fw-bold 名前
           .col-sm-9= @user.name
+        .row.mb-2
+          .col-sm-3.fw-bold メールアドレス
+          .col-sm-9= @user.email
         .row.mb-2
           .col-sm-3.fw-bold 権限
           .col-sm-9= @user.role

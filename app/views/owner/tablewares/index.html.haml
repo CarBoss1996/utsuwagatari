@@ -14,14 +14,21 @@
     %table.table.table-striped
       %thead
         %tr
+          %th
           %th 名前
           %th 有効/無効
           %th.show
       %tbody
         - @tablewares.each do |tableware|
           %tr
-            %td= tableware.name
             %td
-              = card_item tableware,:active, as: :boolean
+              - if tableware.images.attached?
+                = image_tag url_for(tableware.images.first), class: "img-thumbnail", style: "width: 60px; height: 60px; object-fit: cover;"
+              - else
+                %div.img-placeholder.bg-secondary.text-white.d-flex.align-items-center.justify-content-center{ style: "width: 60px; height: 60px;" }
+            %td
+              = tableware.name
+            %td
+              = card_value tableware,:active, as: :boolean
             %td.show
               %a.btn.btn-outline-secondary{href: owner_tableware_path(tableware.id)} 詳細
